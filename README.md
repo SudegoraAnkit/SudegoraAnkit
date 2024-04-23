@@ -20,7 +20,7 @@ Here are some ideas to get you started:
 # 👉 About Me 😊:
 🔭 I’m currently working on Automotive Project 🚘<br>👯 I’m looking to collaborate on software development<br>🤝 I’m looking for help with developing something for the community<br>🌱 I’m currently learning Machine Learning <br>💬 Ask me about Java<br>⚡ Fun fact - I am still confused on Mathematical Induction. If something is proved already, Why I need to prove 😃
 
-[Google Cloud Profile](https://www.cloudskillsboost.google/public_profiles/21ca54db-5fc1-403b-9780-7fd71507e3bf) | [Google Developer Profile](https://g.dev/ankitsudegora)
+[Google Cloud Profile](https://www.cloudskillsboost.google/public_profiles/21ca54db-5fc1-403b-9780-7fd71507e3bf) | [Google Developer Profile](https://g.dev/ankitsudegora) | [GFG Profile](https://www.geeksforgeeks.org/user/ankitsudegora/) | [Leetcode profile](https://leetcode.com/ankitraidev/)
 
 # 📊 GitHub Stats:
 ![](https://github-readme-stats.vercel.app/api?username=SudegoraAnkit&theme=dark&hide_border=false&include_all_commits=true&count_private=true)<br/>
