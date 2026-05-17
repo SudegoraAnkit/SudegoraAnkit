@@ -1,20 +1,19 @@
 <div align="center">
 
-<img src="https://github.com/SudegoraAnkit.png" width="220"/>
+<img src="https://github.com/SudegoraAnkit.png" width="200"/>
 
-# 👨‍💻 Ankit Rai
+# Ankit Rai
 
-### Backend Engineer • Java & Spring Developer • Systems Learner
+**Backend Engineer · Systems Thinker · Building for Scale & Reliability**
 
-<img src="https://readme-typing-svg.herokuapp.com?font=Fira+Code&size=22&pause=1000&color=00C2FF&center=true&vCenter=true&width=850&lines=Backend+Engineer;Spring+Boot+Developer;Distributed+Systems+Learner;Building+Reliable+Backend+Systems;Learning+AI+%2B+Backend+Engineering" />
-
-<br/>
+<p align="center">
+  <em>I design backend systems that survive production — integrations that handle enterprise complexity, APIs that scale predictably, and architectures that stay maintainable under real-world constraints.</em>
+</p>
 
 <p align="center">
   <a href="https://github.com/SudegoraAnkit">
     <img src="https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github" />
   </a>
-
   <a href="https://linkedin.com/in/ankitsudegora">
     <img src="https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge&logo=linkedin" />
   </a>
@@ -24,305 +23,215 @@
 
 ---
 
-# 🧠 What I am and How I think?
+## 🎯 What I Bring to Engineering
 
-Backend engineer with experience building:
-- APIs
-- enterprise integrations
-- backend tools
-- internal platforms
-- scalable backend services
+I build backend systems with a focus on **reliability, integration complexity, and long-term maintainability**. My work centers on designing APIs and data pipelines that handle real enterprise constraints — legacy integrations, schema evolution, observability, and failure recovery.
 
-Most engineering interest is around:
-- backend architecture
-- distributed systems
-- scalable APIs
-- observability
-- maintainable systems
-- AI-integrated backend applications
+**How I approach problems:**
+- Start with the constraints: What can fail? What must scale? What will change?
+- Design for observability: Instrument before optimizing
+- Prefer boring, proven solutions over shiny complexity
+- Think in systems: data flow, failure modes, operational reality
 
-How I usually think about engineering:
-- understand internals instead of memorizing frameworks
-- prefer maintainability over unnecessary complexity
-- focus on reliability and long-term scalability
-- think in systems, tradeoffs, failures, and production realities
+**Current engineering focus:**
+- Distributed systems thinking (Kafka, event-driven architecture, eventual consistency)
+- API design & integration patterns (REST, gRPC, async messaging)
+- AI-integrated backends (LLM tool chains, Spring AI, augmented services)
+- Production-grade Java/Spring Boot systems
 
 ---
 
-# 💼 Current Work
+## 💼 Engineering Experience
 
-Currently working on enterprise backend systems and Eclipse plugin-based tooling.
+### **Enterprise Backend Systems**
+*Building production services that integrate with complex ecosystems*
 
-### Main Work Areas
-- Java
-- Spring Boot
-- REST APIs
-- MSSQL
-- MongoDB
-- SharePoint integrations
-- Eclipse RCP / DSL tooling
-- React integration
-- Azure ecosystem
+**API Integration Architecture**
+- Designed and built enterprise API integrations connecting internal services with SharePoint, Azure, and third-party telematics platforms
+- Handled authentication flows, rate limiting, retry logic, and failure recovery across distributed services
+- Built observability into integration layers: structured logging, metrics, error correlation
+- **Tech context:** Spring Boot, REST, MSSQL, MongoDB, Azure ecosystem
 
-### Worked On
-- API integrations
-- telematics solutions
-- enterprise plugin tooling
-- backend modernization
-- reporting systems
-- large-scale data migration systems
+**Large-Scale Data Migration System**
+- Architected SharePoint → MongoDB migration pipeline handling enterprise document management workflows
+- Designed for incremental migration, rollback capability, and zero-downtime cutover
+- Built validation layers to ensure data integrity across schema transformations
+- **Learning applied:** Explored event-driven patterns (studying Kafka) to improve future migration architectures
 
----
+**Eclipse Plugin Tooling & DSL Systems**
+- Built Eclipse RCP-based validation and workflow tooling for domain-specific languages
+- Designed plugin architecture for extensibility and maintainability in enterprise environments
+- Integrated React-based UI components into Eclipse plugin ecosystem
+- **Tech context:** Java, Eclipse RCP, DSL tooling, React integration
 
-# 🚘 Currently Learning
-
-## Work Related
-- C++
-- Adaptive AUTOSAR
-- Spring Boot
-- React
-
-## Personal Learning
-- Kafka
-- Microservices
-- gRPC
-- Spring WebFlux
-- Spring AI
-- Podman
+**Backend Modernization & Reporting**
+- Modernized legacy reporting systems with improved API design and database query optimization
+- Refactored monolithic services toward clearer bounded contexts
+- **Learning applied:** Applying microservices thinking (studying Spring Cloud, gRPC) to future decomposition work
 
 ---
 
-# 🔁 Revising Fundamentals
+## 🔬 Active Learning (Integrated with Real Work)
 
-### Java Ecosystem
-- Java 8
-- Java 17
-- Spring Boot
-- Spring Cloud
-- Spring MVC
-- Spring Data JPA
+I don't just learn technologies — I apply them to real problems and architectural thinking:
 
-### Backend Engineering
-- REST APIs
-- Web Services
-- API Design
-- Database Design
+| **Learning Track** | **Applied Context** | **Status** |
+|---|---|---|
+| **Kafka & Event-Driven Systems** | Rethinking migration pipelines and async integration patterns | Hands-on exploration |
+| **gRPC & Spring WebFlux** | Evaluating for high-throughput internal service communication | Building prototypes |
+| **Spring AI & LLM Integration** | Exploring AI-augmented backend workflows and tool orchestration | Experimenting |
+| **C++ & Adaptive AUTOSAR** | Current work requirement — embedded systems context | Active work |
+| **Microservices Decomposition** | Applying to legacy modernization and bounded context design | Studying tradeoffs |
 
-### Interview Preparation
-- DSA
-- Low-Level Design
-- High-Level Design
-- Problem Solving
+**Revising Fundamentals:** DSA, Low-Level Design, High-Level Design (interview prep + deeper systems thinking)
 
 ---
 
-# 📚 Experience by Projects
+## 🚀 Projects That Show My Thinking
 
-| Area | Experience |
-|---|---|
-| ⚙️ Backend APIs | REST APIs, validation, Swagger, enterprise integrations |
-| 🏗️ Enterprise Systems | Eclipse plugin tooling, DSL validation systems |
-| 🗄️ Database Engineering | MSSQL, MongoDB Atlas, query optimization |
-| 🔄 Data Migration | SharePoint → MongoDB migration |
-| 📊 Tracking Systems | telematics and usage tracking systems |
-| ☁️ Cloud Exposure | Azure ecosystem, Docker, Podman |
-| 🤖 AI Exploration | Spring AI, AI-assisted backend workflows |
+### **[Lumina Task Orchestrator](https://github.com/SudegoraAnkit/lumina-task-orchestrator)**
+![stars](https://img.shields.io/github/stars/SudegoraAnkit/lumina-task-orchestrator?style=social) ![lang](https://img.shields.io/github/languages/top/SudegoraAnkit/lumina-task-orchestrator)
 
----
+Lightweight workflow orchestrator for scheduled and ad-hoc job execution with retry logic and observability.
 
-# 📈 Areas Where I Work Better
+**Engineering focus:** Task scheduling, failure recovery, monitoring, operational simplicity  
+**Tech:** Java, Spring Boot, Scheduler API
 
-- backend architecture thinking
-- debugging backend systems
-- system-level reasoning
-- understanding tradeoffs
-- learning technical concepts deeply
-- API integrations
-- engineering documentation
-- production issue analysis
+**Why this matters:** Built to explore orchestration patterns that could replace heavyweight workflow engines in simpler use cases.
 
 ---
 
-# 📉 Areas Improving Actively
+### **[GyanYatra](https://github.com/SudegoraAnkit/GyanYatra)**
+![stars](https://img.shields.io/github/stars/SudegoraAnkit/GyanYatra?style=social) ![lang](https://img.shields.io/github/languages/top/SudegoraAnkit/GyanYatra)
 
-- frontend/UI aesthetics
-- reducing overthinking
-- communication clarity
-- presentation skills
-- public speaking
-- prioritization
-- consistency in technical writing
+Knowledge-sharing platform for curated learning paths, tutorials, and engineering notes.
+
+**Engineering focus:** Structured learning, documentation-as-product  
+**Tech:** Web stack (see repo), persistence layer
+
+**Why this matters:** Exploring how to structure and present technical knowledge effectively — a meta-project on learning itself.
 
 ---
+
+### **Past Work**
+
+- **[ComplexityAnalyzer](https://github.com/SudegoraAnkit/ComplexityAnalyzer)** — Static analysis tooling for code complexity measurement (Java)
+- **[QR Code Reader/Generator](https://github.com/SudegoraAnkit/QR-Code-Reader-generator-using-java)** — Utility for QR encoding/decoding (Java, ZXing)
+- **[Tech Challenge Repos](https://github.com/SudegoraAnkit/expleo_group-techchallenge)** — Problem-solving demonstrations
+
+---
+
+## 🛠️ Tech Stack (Production & Exploration)
+
 <div align="center">
-# 🛠️ Tech Stack
 
-<p align="center">
-
-<img src="https://skillicons.dev/icons?i=java,spring,docker,git,cpp,python,react,postgres,mongodb" />
-
-</p>
-
----
-
-## ⚙️ Backend & Frameworks
-
-<p align="center">
-
+### **Core Backend**
+<p>
+<img src="https://img.shields.io/badge/Java-ED8B00?style=for-the-badge&logo=openjdk&logoColor=white" />
 <img src="https://img.shields.io/badge/Spring_Boot-6DB33F?style=for-the-badge&logo=springboot&logoColor=white" />
-<img src="https://img.shields.io/badge/Spring_MVC-6DB33F?style=for-the-badge&logo=spring&logoColor=white" />
 <img src="https://img.shields.io/badge/Spring_Data_JPA-59666C?style=for-the-badge&logo=hibernate&logoColor=white" />
 <img src="https://img.shields.io/badge/REST_APIs-02569B?style=for-the-badge" />
-<img src="https://img.shields.io/badge/Web_Services-FF6F00?style=for-the-badge" />
-
 </p>
 
----
-
-## 🌐 Distributed Systems & Messaging
-
-<p align="center">
-
+### **Distributed Systems & Messaging** *(exploring)*
+<p>
 <img src="https://img.shields.io/badge/Kafka-000000?style=for-the-badge&logo=apachekafka" />
-<img src="https://img.shields.io/badge/Microservices-FF9800?style=for-the-badge" />
 <img src="https://img.shields.io/badge/gRPC-244C5A?style=for-the-badge&logo=grpc&logoColor=white" />
 <img src="https://img.shields.io/badge/Spring_WebFlux-6DB33F?style=for-the-badge&logo=spring&logoColor=white" />
-
+<img src="https://img.shields.io/badge/Microservices-FF9800?style=for-the-badge" />
 </p>
 
----
-
-## 🗄️ Databases
-
-<p align="center">
-
+### **Data Layer**
+<p>
 <img src="https://img.shields.io/badge/MS_SQL-CC2927?style=for-the-badge&logo=microsoftsqlserver&logoColor=white" />
 <img src="https://img.shields.io/badge/MongoDB-47A248?style=for-the-badge&logo=mongodb&logoColor=white" />
-
 </p>
 
----
-
-## 🧪 Tools & Testing
-
-<p align="center">
-
+### **Cloud & Infrastructure**
+<p>
+<img src="https://img.shields.io/badge/Azure-0078D4?style=for-the-badge&logo=microsoftazure&logoColor=white" />
 <img src="https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white" />
 <img src="https://img.shields.io/badge/Podman-892CA0?style=for-the-badge&logo=podman&logoColor=white" />
+</p>
+
+### **AI Integration** *(exploring)*
+<p>
+<img src="https://img.shields.io/badge/Spring_AI-6DB33F?style=for-the-badge&logo=spring&logoColor=white" />
+<img src="https://img.shields.io/badge/LLM_Integration-FF6F00?style=for-the-badge" />
+</p>
+
+### **Tools & Testing**
+<p>
+<img src="https://img.shields.io/badge/Git-F05032?style=for-the-badge&logo=git&logoColor=white" />
 <img src="https://img.shields.io/badge/Postman-FF6C37?style=for-the-badge&logo=postman&logoColor=white" />
-<img src="https://img.shields.io/badge/Swagger-85EA2D?style=for-the-badge&logo=swagger&logoColor=black" />
 <img src="https://img.shields.io/badge/JUnit-25A162?style=for-the-badge&logo=junit5&logoColor=white" />
 <img src="https://img.shields.io/badge/Mockito-78A641?style=for-the-badge" />
-<img src="https://img.shields.io/badge/Git-F05032?style=for-the-badge&logo=git&logoColor=white" />
-
+<img src="https://img.shields.io/badge/Swagger-85EA2D?style=for-the-badge&logo=swagger&logoColor=black" />
 </p>
 
----
-
-## ☁️ Cloud & Platform
-
-<p align="center">
-
-<img src="https://img.shields.io/badge/Azure-0078D4?style=for-the-badge&logo=microsoftazure&logoColor=white" />
-<img src="https://img.shields.io/badge/MongoDB_Atlas-47A248?style=for-the-badge&logo=mongodb&logoColor=white" />
-
-</p>
 </div>
 
 ---
 
-# 🔥 Active Repository
+## 📊 Engineering Strengths & Growth Areas
 
-## Current Main Repository
+**Where I operate well:**
+- Backend architecture thinking and system-level reasoning
+- Debugging complex integration issues and production failures
+- Understanding tradeoffs (performance vs complexity, consistency vs availability)
+- API design and enterprise integration patterns
+- Technical documentation and engineering clarity
 
-[👉 Open Repository](https://github.com/your-username/your-repository)
-
-Main place for:
-- backend projects
-- system design practice
-- distributed systems learning
-- Kafka experiments
-- Spring AI exploration
-- engineering notes
-
----
-
-# 🧾 ADR Documents
-
-Architecture Decision Records (ADRs):
-- system design decisions
-- tradeoff analysis
-- architecture evolution
-- technical reasoning
-
-[👉 Open ADR Repository](https://github.com/your-username/adr-docs)
+**Actively improving:**
+- Communication clarity and presentation skills (technical and non-technical audiences)
+- Frontend/UI thinking (enough to collaborate effectively with UI engineers)
+- Reducing overthinking and analysis paralysis
+- Prioritization and consistent technical writing
 
 ---
 
-# 🎤 Events and Engineering Notes
+## 🧭 Engineering Philosophy
+
+> **Build systems that:**
+> - Scale predictably
+> - Fail gracefully and observably
+> - Stay maintainable under changing requirements
+> - Survive real production constraints
+> - Can be operated by someone other than you
+
+I believe in **first-principles thinking**: understanding *why* a solution exists, what constraints shaped it, and what tradeoffs it accepts. I prefer boring, proven technology over hype — unless the hype solves a real problem I can articulate.
+
+---
+
+## 📚 Continuous Learning
 
 I regularly attend:
-- backend engineering events
-- AI meetups
-- architecture discussions
-- developer communities
+- Backend engineering meetups
+- AI/ML integration discussions
+- Distributed systems architecture talks
+- Developer community events
 
-Topics usually covered:
-- distributed systems
-- backend scaling
-- system design
-- AI engineering
-- developer productivity
+**Topics I track:**
+- Distributed systems patterns
+- Backend scalability and reliability
+- System design tradeoffs
+- AI-augmented development workflows
+- Engineering productivity and communication
 
-[👉 Event Notes Repository](https://github.com/your-username/event-notes)
-
----
-
-# 🌐 Portfolio
-
-[👉 Visit Portfolio](https://your-portfolio.com)
+[📝 Event Notes & Learnings](https://github.com/SudegoraAnkit/events)
 
 ---
 
-# 📬 Contact
+## 🌐 Connect
 
-- GitHub: https://github.com/SudegoraAnkit
-- LinkedIn: https://linkedin.com/in/ankitsudegora
-
----
-
-# 📖 Current Focus
-
-```yaml
-currently_focused_on:
-  - Distributed Systems
-  - Kafka
-  - Microservices
-  - Spring AI
-  - WebFlux
-  - gRPC
-  - Adaptive AUTOSAR
-  - DSA Revision
-  - System Design
-  - Communication Skills
-```
-
----
-
-# 🧭 Philosophy
-
-> Build systems that:
->
-> - scale properly
-> - fail predictably
-> - stay maintainable
-> - are observable
-> - survive real production usage
+- **GitHub:** [github.com/SudegoraAnkit](https://github.com/SudegoraAnkit)
+- **LinkedIn:** [linkedin.com/in/ankitsudegora](https://linkedin.com/in/ankitsudegora)
+- **Portfolio:** [SudegoraAnkit.github.io](https://github.com/SudegoraAnkit/SudegoraAnkit.github.io)
 
 ---
 
 <div align="center">
 
-### 💡 Backend engineering is about designing systems that survive scale, failures, and long-term maintenance.
+### 💡 *"Backend engineering is not about frameworks — it's about designing systems that survive scale, failures, and the test of time."*
 
 </div>
