@@ -1,18 +1,14 @@
 <div align="center">
 
-<img src="YOUR_PROFILE_IMAGE_LINK_HERE" width="220" style="border-radius:50%" />
+<img src="https://github.com/SudegoraAnkit.png" width="220"/>
 
 # 👨‍💻 Ankit Rai
 
-### Backend Engineer • System Thinker • Java + Spring Developer
+### Backend Engineer • Java & Spring Developer • Systems Learner
 
-<img src="https://readme-typing-svg.herokuapp.com?font=Fira+Code&size=22&pause=1000&color=00C2FF&center=true&vCenter=true&width=900&lines=Backend+Engineer;Spring+Boot+Developer;Distributed+Systems+Learner;Building+Reliable+Systems;Learning+AI+%2B+Backend+Engineering" />
+<img src="https://readme-typing-svg.herokuapp.com?font=Fira+Code&size=22&pause=1000&color=00C2FF&center=true&vCenter=true&width=850&lines=Backend+Engineer;Spring+Boot+Developer;Distributed+Systems+Learner;Building+Reliable+Backend+Systems;Learning+AI+%2B+Backend+Engineering" />
 
 <br/>
-
-
-
-<br/><br/>
 
 <p align="center">
   <a href="https://github.com/SudegoraAnkit">
@@ -22,10 +18,6 @@
   <a href="https://linkedin.com/in/ankitsudegora">
     <img src="https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge&logo=linkedin" />
   </a>
-
-  <a href="https://your-portfolio.com">
-    <img src="https://img.shields.io/badge/Portfolio-000000?style=for-the-badge&logo=vercel" />
-  </a>
 </p>
 
 </div>
@@ -34,30 +26,34 @@
 
 # 🧠 What I am and How I think?
 
-Backend engineer with experience building APIs, enterprise tools, integrations, and scalable backend systems.
+Backend engineer with experience building:
+- APIs
+- enterprise integrations
+- backend tools
+- internal platforms
+- scalable backend services
 
-Most of the engineering interest is around:
+Most engineering interest is around:
 - backend architecture
 - distributed systems
-- system design
 - scalable APIs
 - observability
-- AI-integrated backend systems
+- maintainable systems
+- AI-integrated backend applications
 
-Engineering philosophy:
-- understand internals instead of blindly using frameworks
+How I usually think about engineering:
+- understand internals instead of memorizing frameworks
 - prefer maintainability over unnecessary complexity
-- optimize for long-term scalability
-- think in systems, failures, tradeoffs, and reliability
-- build software that survives production realities
+- focus on reliability and long-term scalability
+- think in systems, tradeoffs, failures, and production realities
 
 ---
 
 # 💼 Current Work
 
-Currently working as a backend engineer on enterprise-level systems and Eclipse plugin-based tooling.
+Currently working on enterprise backend systems and Eclipse plugin-based tooling.
 
-Main work areas:
+### Main Work Areas
 - Java
 - Spring Boot
 - REST APIs
@@ -65,36 +61,28 @@ Main work areas:
 - MongoDB
 - SharePoint integrations
 - Eclipse RCP / DSL tooling
-- React-based UI integration
+- React integration
 - Azure ecosystem
 
-Worked on:
-- large-scale API integrations
+### Worked On
+- API integrations
 - telematics solutions
-- data migration systems
 - enterprise plugin tooling
 - backend modernization
-- user tracking and reporting systems
+- reporting systems
+- large-scale data migration systems
 
 ---
 
-# 🚘 Current Learning (Work Related)
+# 🚘 Currently Learning
 
-Learning technologies related to Adaptive AUTOSAR ecosystem and modern backend engineering.
-
-### Currently Learning
+## Work Related
 - C++
 - Adaptive AUTOSAR
 - Spring Boot
 - React
 
----
-
-# 🚀 Personal Engineering Learning
-
-Currently exploring deeper backend and distributed systems concepts.
-
-### Backend & Distributed Systems
+## Personal Learning
 - Kafka
 - Microservices
 - gRPC
@@ -102,16 +90,9 @@ Currently exploring deeper backend and distributed systems concepts.
 - Spring AI
 - Podman
 
-### AI + Backend Integration
-- AI-assisted workflows
-- LLM integrations
-- AI infrastructure thinking
-
 ---
 
-# 🔁 Revising Core Fundamentals
-
-Revisiting fundamentals deeply instead of shallow learning.
+# 🔁 Revising Fundamentals
 
 ### Java Ecosystem
 - Java 8
@@ -137,30 +118,26 @@ Revisiting fundamentals deeply instead of shallow learning.
 
 # 📚 Experience by Projects
 
-| Project Area | Experience |
+| Area | Experience |
 |---|---|
 | ⚙️ Backend APIs | REST APIs, validation, Swagger, enterprise integrations |
 | 🏗️ Enterprise Systems | Eclipse plugin tooling, DSL validation systems |
-| 🌐 Distributed Thinking | microservices concepts, async communication, scalability |
-| 🗄️ Database Engineering | MSSQL, MongoDB Atlas, schema and query optimization |
-| 🔄 Data Migration | SharePoint → MongoDB migration for large-scale enterprise data |
-| 📊 Tracking Systems | telematics and user activity monitoring systems |
-| 🤖 AI Engineering | Spring AI exploration, AI-assisted backend systems |
-| ☁️ Cloud & DevOps | Azure basics, Docker, Podman, CI/CD exposure |
+| 🗄️ Database Engineering | MSSQL, MongoDB Atlas, query optimization |
+| 🔄 Data Migration | SharePoint → MongoDB migration |
+| 📊 Tracking Systems | telematics and usage tracking systems |
+| ☁️ Cloud Exposure | Azure ecosystem, Docker, Podman |
+| 🤖 AI Exploration | Spring AI, AI-assisted backend workflows |
 
 ---
 
-# 📈 Where I scale better
-
-Areas where engineering thinking is naturally stronger:
+# 📈 Areas Where I Work Better
 
 - backend architecture thinking
 - debugging backend systems
 - system-level reasoning
 - understanding tradeoffs
-- learning difficult concepts deeply
-- long-term maintainability thinking
-- API design and integrations
+- learning technical concepts deeply
+- API integrations
 - engineering documentation
 - production issue analysis
 
@@ -168,97 +145,89 @@ Areas where engineering thinking is naturally stronger:
 
 # 📉 Areas Improving Actively
 
-Improvement areas being worked on continuously:
-
 - frontend/UI aesthetics
 - reducing overthinking
-- faster execution under uncertainty
-- technical content creation
-- public speaking
-- presentation skills
 - communication clarity
+- presentation skills
+- public speaking
 - prioritization
-- avoiding context switching
+- consistency in technical writing
 
 ---
-
-# 🧭 Skills I am Building Toward (Top 1% Engineer Mindset)
-
-Not just coding skills — also engineering maturity.
-
-## Technical Skills
-- distributed systems
-- scalability engineering
-- concurrency
-- observability
-- event-driven architecture
-- performance engineering
-- AI system integration
-- infrastructure awareness
-- cloud-native development
-- production debugging
-
-## Professional Skills
-- technical communication
-- architecture discussions
-- requirement understanding
-- stakeholder communication
-- ownership mindset
-- writing technical docs
-- mentoring mindset
-- decision-making under constraints
-
-## Personal Skills
-- consistency
-- deep work
-- focus management
-- productivity systems
-- long-term thinking
-- learning discipline
-
-## Verbal & Non-Verbal Skills
-- presentation confidence
-- listening carefully before responding
-- concise communication
-- conflict handling
-- clear explanation of technical ideas
-- calm communication during pressure
-- professional body language
-- structured thinking while speaking
-
----
-
+<div align="center">
 # 🛠️ Tech Stack
 
-## Languages
-```text
-Java • SQL • C++ • Python
-```
+<p align="center">
 
-## Backend
-```text
-Spring Boot • Spring MVC • Spring Data JPA • REST APIs • Web Services
-```
+<img src="https://skillicons.dev/icons?i=java,spring,docker,git,cpp,python,react,postgres,mongodb" />
 
-## Distributed Systems
-```text
-Kafka • Microservices • gRPC • WebFlux
-```
+</p>
 
-## Databases
-```text
-MSSQL • MongoDB
-```
+---
 
-## Tools
-```text
-Docker • Podman • Postman • Swagger • Git • JUnit • Mockito
-```
+## ⚙️ Backend & Frameworks
 
-## Cloud & Platform
-```text
-Azure • MongoDB Atlas
-```
+<p align="center">
+
+<img src="https://img.shields.io/badge/Spring_Boot-6DB33F?style=for-the-badge&logo=springboot&logoColor=white" />
+<img src="https://img.shields.io/badge/Spring_MVC-6DB33F?style=for-the-badge&logo=spring&logoColor=white" />
+<img src="https://img.shields.io/badge/Spring_Data_JPA-59666C?style=for-the-badge&logo=hibernate&logoColor=white" />
+<img src="https://img.shields.io/badge/REST_APIs-02569B?style=for-the-badge" />
+<img src="https://img.shields.io/badge/Web_Services-FF6F00?style=for-the-badge" />
+
+</p>
+
+---
+
+## 🌐 Distributed Systems & Messaging
+
+<p align="center">
+
+<img src="https://img.shields.io/badge/Kafka-000000?style=for-the-badge&logo=apachekafka" />
+<img src="https://img.shields.io/badge/Microservices-FF9800?style=for-the-badge" />
+<img src="https://img.shields.io/badge/gRPC-244C5A?style=for-the-badge&logo=grpc&logoColor=white" />
+<img src="https://img.shields.io/badge/Spring_WebFlux-6DB33F?style=for-the-badge&logo=spring&logoColor=white" />
+
+</p>
+
+---
+
+## 🗄️ Databases
+
+<p align="center">
+
+<img src="https://img.shields.io/badge/MS_SQL-CC2927?style=for-the-badge&logo=microsoftsqlserver&logoColor=white" />
+<img src="https://img.shields.io/badge/MongoDB-47A248?style=for-the-badge&logo=mongodb&logoColor=white" />
+
+</p>
+
+---
+
+## 🧪 Tools & Testing
+
+<p align="center">
+
+<img src="https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white" />
+<img src="https://img.shields.io/badge/Podman-892CA0?style=for-the-badge&logo=podman&logoColor=white" />
+<img src="https://img.shields.io/badge/Postman-FF6C37?style=for-the-badge&logo=postman&logoColor=white" />
+<img src="https://img.shields.io/badge/Swagger-85EA2D?style=for-the-badge&logo=swagger&logoColor=black" />
+<img src="https://img.shields.io/badge/JUnit-25A162?style=for-the-badge&logo=junit5&logoColor=white" />
+<img src="https://img.shields.io/badge/Mockito-78A641?style=for-the-badge" />
+<img src="https://img.shields.io/badge/Git-F05032?style=for-the-badge&logo=git&logoColor=white" />
+
+</p>
+
+---
+
+## ☁️ Cloud & Platform
+
+<p align="center">
+
+<img src="https://img.shields.io/badge/Azure-0078D4?style=for-the-badge&logo=microsoftazure&logoColor=white" />
+<img src="https://img.shields.io/badge/MongoDB_Atlas-47A248?style=for-the-badge&logo=mongodb&logoColor=white" />
+
+</p>
+</div>
 
 ---
 
@@ -268,16 +237,13 @@ Azure • MongoDB Atlas
 
 [👉 Open Repository](https://github.com/your-username/your-repository)
 
-Main place where current learning and engineering experiments happen.
-
-Contains:
+Main place for:
 - backend projects
-- microservices experiments
-- Kafka learning
-- Spring AI exploration
 - system design practice
+- distributed systems learning
+- Kafka experiments
+- Spring AI exploration
 - engineering notes
-- architecture decisions
 
 ---
 
@@ -286,10 +252,9 @@ Contains:
 Architecture Decision Records (ADRs):
 - system design decisions
 - tradeoff analysis
-- architectural evolution
+- architecture evolution
 - technical reasoning
 
-## ADR Repository
 [👉 Open ADR Repository](https://github.com/your-username/adr-docs)
 
 ---
@@ -299,20 +264,17 @@ Architecture Decision Records (ADRs):
 I regularly attend:
 - backend engineering events
 - AI meetups
-- developer communities
 - architecture discussions
-- tech conferences
+- developer communities
 
-## Notes Repository
-[👉 Open Event Notes](https://github.com/your-username/event-notes)
-
-Topics:
+Topics usually covered:
 - distributed systems
-- AI engineering
 - backend scaling
-- developer productivity
 - system design
-- software architecture
+- AI engineering
+- developer productivity
+
+[👉 Event Notes Repository](https://github.com/your-username/event-notes)
 
 ---
 
@@ -324,9 +286,8 @@ Topics:
 
 # 📬 Contact
 
-- GitHub: https://github.com/your-username
-- LinkedIn: https://linkedin.com/in/your-profile
-- Email: your-email@example.com
+- GitHub: https://github.com/SudegoraAnkit
+- LinkedIn: https://linkedin.com/in/ankitsudegora
 
 ---
 
@@ -356,14 +317,12 @@ currently_focused_on:
 > - fail predictably
 > - stay maintainable
 > - are observable
-> - help teams move faster
 > - survive real production usage
 
 ---
 
 <div align="center">
 
-### 💡 Backend engineering is not only about APIs.
-### It is about designing reliable systems that survive scale, failures, and time.
+### 💡 Backend engineering is about designing systems that survive scale, failures, and long-term maintenance.
 
 </div>
