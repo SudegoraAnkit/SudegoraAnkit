@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="https://github.com/SudegoraAnkit.png" width="200"/>
+<img src="https://github.com/SudegoraAnkit/SudegoraAnkit/blob/main/circleHalfBWImage.png" width="300"/>
 
 # Ankit Rai
 
