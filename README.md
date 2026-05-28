@@ -75,11 +75,10 @@ Start with constraints → Design for observability → Ship boring solutions �
 
 ## 💼 Engineering Experience
 
-<div align="center">
+<details>
+<summary><b>🏗️ Enterprise Backend Architecture (Click to expand)</b></summary>
 
-### 🏗️ **Enterprise Backend Architecture**
-
-</div>
+<br/>
 
 <table>
 <tr>
@@ -182,6 +181,8 @@ graph TD
 </td>
 </tr>
 </table>
+
+</details>
 
 ---
 
@@ -298,6 +299,46 @@ graph TD
     F -->|No| G[Retry Logic]
     F -->|Yes| H[Metrics]
     G --> E
+```
+
+</td>
+</tr>
+</table>
+
+---
+
+<table>
+<tr>
+<td width="50%">
+
+### **[HabitEngine](https://github.com/SudegoraAnkit/HabitEngine)**
+
+![stars](https://img.shields.io/github/stars/SudegoraAnkit/HabitEngine?style=social) ![lang](https://img.shields.io/github/languages/top/SudegoraAnkit/HabitEngine)
+
+Behavior tracking and habit formation system with goal-tracking capabilities.
+
+**Engineering Focus:**
+- Event-driven habit tracking architecture
+- Goal aggregation and streak calculations
+- Personalized habit recommendation engine
+
+**Tech:** Java, Spring Boot, PostgreSQL, Event-driven patterns
+
+**Why This Matters:** Applying real-world behavioral psychology to backend system design; exploring how to model complex user behavior patterns at scale.
+
+</td>
+<td width="50%">
+
+```mermaid
+graph TD
+    A[User Action] --> B[Event Capture]
+    B --> C[Habit Tracker]
+    C --> D{Goal Met?}
+    D -->|Yes| E[Streak Update]
+    D -->|No| F[Retry Reminder]
+    E --> G[Analytics]
+    F --> G
+    G --> H[Recommendations]
 ```
 
 </td>
