@@ -383,6 +383,140 @@ Knowledge-sharing platform for curated learning paths, tutorials, and engineerin
 
 ---
 
+## 📱 Additional Projects
+
+<table>
+<tr>
+<td width="50%">
+
+### **[KharchaDekh](https://github.com/SudegoraAnkit/KharchaDekh)**
+
+![stars](https://img.shields.io/github/stars/SudegoraAnkit/KharchaDekh?style=social) ![lang](https://img.shields.io/github/languages/top/SudegoraAnkit/KharchaDekh)
+
+Privacy-First Automated Expense Tracker designed specifically for India.
+
+**Key Features:**
+- Operates 100% offline and locally for maximum privacy
+- Parses transaction notifications from banking and UPI alerts
+- Automates expense categorization and budget tracking
+- Provides comprehensive financial overview
+
+**Tech:** Kotlin, Android, Jetpack Compose, Room Database
+
+**Why This Matters:** Building privacy-focused financial tools that give users complete control over their data while automating tedious tasks.
+
+<p align="center">
+<a href="https://github.com/SudegoraAnkit/KharchaDekh">
+<img src="https://img.shields.io/badge/Read%20More%20→-0078D4?style=for-the-badge" />
+</a>
+</p>
+
+</td>
+<td width="50%">
+
+```mermaid
+graph TD
+    A[Banking Notifications] --> B[Local Parser]
+    B --> C[Category Detection]
+    C --> D[Expense Entry]
+    D --> E[Local Database]
+    E --> F[Analytics]
+    F --> G[Budget Overview]
+```
+
+</td>
+</tr>
+</table>
+
+---
+
+<table>
+<tr>
+<td width="50%">
+
+```mermaid
+graph TD
+    A[AI Studio] --> B[Mobile App]
+    B --> C[Gemini API Integration]
+    C --> D[Real-time Processing]
+    D --> E[User Interface]
+```
+
+</td>
+<td width="50%">
+
+### **[ChronoNote-Mobile](https://github.com/SudegoraAnkit/ChronoNote-Mobile)**
+
+![stars](https://img.shields.io/github/stars/SudegoraAnkit/ChronoNote-Mobile?style=social) ![lang](https://img.shields.io/github/languages/top/SudegoraAnkit/ChronoNote-Mobile)
+
+Mobile note-taking application powered by Google's Gemini AI.
+
+**Key Features:**
+- AI-enhanced note-taking with intelligent processing
+- Real-time Gemini API integration
+- Android-native Kotlin implementation
+- Designed for seamless mobile experience
+
+**Tech:** Kotlin, Android Studio, Gemini API
+
+**Why This Matters:** Exploring how to integrate cutting-edge AI capabilities into mobile applications while maintaining clean architecture and responsive UX.
+
+<p align="center">
+<a href="https://github.com/SudegoraAnkit/ChronoNote-Mobile">
+<img src="https://img.shields.io/badge/Read%20More%20→-0078D4?style=for-the-badge" />
+</a>
+</p>
+
+</td>
+</tr>
+</table>
+
+---
+
+<table>
+<tr>
+<td width="50%">
+
+### **[AI-Resources](https://github.com/SudegoraAnkit/AI-Resources)**
+
+![stars](https://img.shields.io/github/stars/SudegoraAnkit/AI-Resources?style=social)
+
+Comprehensive collection of free resources for learning AI Engineering, ML, and LLMs.
+
+**Content Covered:**
+- Mathematical foundations and Python fundamentals
+- AI/ML fundamentals and deep learning specializations
+- Large Language Models (LLMs) and prompt engineering
+- Retrieval-Augmented Generation (RAG) and AI Agents
+- MLOps, deployment, and production best practices
+
+**Why This Matters:** A curated learning hub providing structured pathways from basics through advanced AI engineering topics with links to courses, frameworks, and tools.
+
+<p align="center">
+<a href="https://github.com/SudegoraAnkit/AI-Resources">
+<img src="https://img.shields.io/badge/Read%20More%20→-0078D4?style=for-the-badge" />
+</a>
+</p>
+
+</td>
+<td width="50%">
+
+```mermaid
+graph TD
+    A[AI Foundations] --> B[ML Frameworks]
+    A --> C[Deep Learning]
+    B --> D[LLMs & Agents]
+    C --> D
+    D --> E[RAG & MCP]
+    D --> F[MLOps & Deployment]
+```
+
+</td>
+</tr>
+</table>
+
+---
+
 <details>
 <summary><b>📂 Past Projects (Click to expand)</b></summary>
 
