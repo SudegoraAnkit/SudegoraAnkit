@@ -1,0 +1,3489 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ankit Rai — Senior Backend & Distributed Systems Engineer</title>
+  <meta name="description" content="Senior Backend and Distributed Systems Engineer based in Hyderabad, India. Specializing in Java, Spring Boot, cloud-native microservices, and reliable system design.">
+  
+  <!-- Typography & Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&display=swap" rel="stylesheet">
+
+  <style>
+    /* CSS custom properties / design system tokens */
+    :root {
+      --bg-color: #0b0c0f;
+      --bg-card: #121318;
+      --bg-card-hover: #16181f;
+      --border-color: #1e222b;
+      --border-hover: #303642;
+      --text-main: #e6edf0;
+      --text-muted: #8b949e;
+      --accent-blue: #58a6ff;
+      --accent-teal: #1d9e75;
+      --accent-amber: #d29922;
+      --font-serif: 'Fraunces', serif;
+      --font-mono: 'DM Mono', monospace;
+      
+      --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.5);
+      --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.7);
+    }
+
+    /* Theme override classes */
+    body.theme-matrix {
+      --bg-color: #020503;
+      --bg-card: #050d06;
+      --bg-card-hover: #081409;
+      --border-color: #123316;
+      --border-hover: #225c27;
+      --text-main: #3dfc47;
+      --text-muted: #1f9426;
+      --accent-blue: #3dfc47;
+      --accent-teal: #3dfc47;
+      --accent-amber: #8cff9b;
+    }
+    body.theme-cyberpunk {
+      --bg-color: #0e0416;
+      --bg-card: #1b0a2e;
+      --bg-card-hover: #250f3d;
+      --border-color: #ff0055;
+      --border-hover: #00ffff;
+      --text-main: #00ffff;
+      --text-muted: #b900ff;
+      --accent-blue: #00ffff;
+      --accent-teal: #ff0055;
+      --accent-amber: #ffff00;
+    }
+    body.theme-nord {
+      --bg-color: #2e3440;
+      --bg-card: #3b4252;
+      --bg-card-hover: #434c5e;
+      --border-color: #4c566a;
+      --border-hover: #88c0d0;
+      --text-main: #eceff4;
+      --text-muted: #d8dee9;
+      --accent-blue: #88c0d0;
+      --accent-teal: #8fbcbb;
+      --accent-amber: #ebcb8b;
+    }
+    body.theme-light {
+      --bg-color: #f6f8fa;
+      --bg-card: #ffffff;
+      --bg-card-hover: #f3f4f6;
+      --border-color: #d0d7de;
+      --border-hover: #0969da;
+      --text-main: #24292f;
+      --text-muted: #57606a;
+      --accent-blue: #0969da;
+      --accent-teal: #1a7f37;
+      --accent-amber: #9a6700;
+    }
+
+    /* Glitch Animation & Laser Scan styles */
+    @keyframes pageGlitch {
+      0% { transform: translate(2px, 1px) skew(0.5deg); }
+      10% { transform: translate(-1px, -2px) skew(-0.5deg); }
+      20% { transform: translate(-3px, 0px) skew(1deg); }
+      30% { transform: translate(0px, 2px) skew(-1deg); }
+      40% { transform: translate(1px, -1px) skew(0deg); }
+      50% { transform: translate(-1px, 2px) skew(0.5deg); }
+      60% { transform: translate(-3px, 1px) skew(-0.5deg); }
+      70% { transform: translate(2px, 1px) skew(1deg); }
+      80% { transform: translate(-1px, -1px) skew(-1deg); }
+      90% { transform: translate(2px, 2px) skew(0deg); }
+      100% { transform: translate(0px, 0px) skew(0deg); }
+    }
+    .page-glitch {
+      animation: pageGlitch 0.15s infinite;
+      filter: hue-rotate(90deg) contrast(1.2);
+    }
+
+    .laser-scan-line {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 4px;
+      background: linear-gradient(to right, rgba(0,0,0,0) 10%, var(--accent-blue) 50%, rgba(0,0,0,0) 90%);
+      box-shadow: 0 0 12px var(--accent-blue);
+      z-index: 100000;
+      pointer-events: none;
+      opacity: 0.85;
+      animation: scanSweep 2.2s linear forwards;
+    }
+    @keyframes scanSweep {
+      0% { top: -10px; }
+      100% { top: 100vh; }
+    }
+
+
+    /* Base resets */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      background-color: var(--bg-color);
+      color: var(--text-main);
+      font-family: var(--font-mono);
+      font-size: 15px;
+      line-height: 1.6;
+    }
+
+    body {
+      min-height: 100vh;
+      overflow-x: hidden;
+      /* Graph paper background */
+      background-image: 
+        radial-gradient(#1f222d 1px, transparent 1px);
+      background-size: 32px 32px;
+      background-attachment: fixed;
+      position: relative;
+    }
+
+    /* Overlay gradient to fade the background grid at the edges */
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: radial-gradient(circle at 50% 50%, transparent 20%, rgba(11, 12, 15, 0.8) 80%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* Scrollbar customization */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: var(--bg-color);
+    }
+    ::-webkit-scrollbar-thumb {
+      background: var(--border-color);
+      border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: var(--border-hover);
+    }
+
+    /* Layout Utility & Spacing */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    section {
+      padding: 8rem 0;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+      transition: all 0.2s ease;
+    }
+
+    /* Typography Utilities */
+    h1, h2, h3, .serif-font {
+      font-family: var(--font-serif);
+      font-weight: 300;
+      line-height: 1.2;
+    }
+
+    .italic {
+      font-style: italic;
+    }
+
+    .section-label {
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: var(--accent-blue);
+      margin-bottom: 2rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .section-label::before {
+      content: "";
+      display: inline-block;
+      width: 24px;
+      height: 1px;
+      background-color: var(--accent-blue);
+    }
+
+    .copy-sentence {
+      text-transform: none; /* ensures sentence case */
+    }
+
+    /* Scroll Animation classes */
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .reveal.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Fixed Navigation Bar */
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4.5rem;
+      background-color: rgba(11, 12, 15, 0.7);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border-color);
+      z-index: 100;
+    }
+
+    .nav-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: 100%;
+    }
+
+    .logo {
+      font-size: 1.1rem;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .logo-dot {
+      display: inline-block;
+      width: 8px;
+      height: 8px;
+      background-color: var(--accent-teal);
+      border-radius: 50%;
+      box-shadow: 0 0 8px var(--accent-teal);
+    }
+
+    nav {
+      display: flex;
+      gap: 2rem;
+      align-items: center;
+    }
+
+    .nav-link {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+
+    .nav-link:hover, .nav-link.active {
+      color: var(--text-main);
+    }
+
+    .sys-status {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      border-left: 1px solid var(--border-color);
+      padding-left: 1.5rem;
+    }
+
+    .status-pulse {
+      width: 6px;
+      height: 6px;
+      background-color: var(--accent-teal);
+      border-radius: 50%;
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0% {
+        transform: scale(0.9);
+        box-shadow: 0 0 0 0 rgba(29, 158, 117, 0.7);
+      }
+      70% {
+        transform: scale(1.1);
+        box-shadow: 0 0 0 6px rgba(29, 158, 117, 0);
+      }
+      100% {
+        transform: scale(0.9);
+        box-shadow: 0 0 0 0 rgba(29, 158, 117, 0);
+      }
+    }
+
+    /* Profile Image concentric pulse animation */
+    .profile-img-container {
+      position: relative;
+      display: inline-block;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-profile-img {
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      border: 2px solid var(--border-color);
+      object-fit: cover;
+      display: block;
+      box-shadow: 0 0 24px rgba(0, 0, 0, 0.5);
+      animation: imagePulseGlow 3s infinite ease-in-out;
+      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .profile-img-container:hover .hero-profile-img {
+      transform: scale(1.04);
+      border-color: var(--accent-blue);
+      box-shadow: 0 0 32px rgba(88, 166, 255, 0.25);
+    }
+
+    @keyframes imagePulseGlow {
+      0% {
+        box-shadow: 0 0 0 0 rgba(88, 166, 255, 0.35), 0 0 24px rgba(0, 0, 0, 0.5);
+      }
+      70% {
+        box-shadow: 0 0 0 12px rgba(88, 166, 255, 0), 0 0 24px rgba(0, 0, 0, 0.5);
+      }
+      100% {
+        box-shadow: 0 0 0 0 rgba(88, 166, 255, 0), 0 0 24px rgba(0, 0, 0, 0.5);
+      }
+    }
+
+    /* Mobile hamburger menu (pure CSS fallback or simple JS trigger) */
+    .menu-toggle {
+      display: none;
+      background: none;
+      border: none;
+      color: var(--text-main);
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
+
+    /* Hero Section */
+    .hero-wrapper {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 4rem;
+      align-items: center;
+      min-height: calc(100vh - 4.5rem);
+      padding-top: 4.5rem;
+    }
+
+    .hero-content {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .hero-tag {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      border: 1px solid var(--border-color);
+      padding: 0.25rem 0.75rem;
+      border-radius: 100px;
+      align-self: flex-start;
+    }
+
+    .hero-name {
+      font-size: 4.5rem;
+      letter-spacing: -0.02em;
+    }
+
+    .hero-statement {
+      font-size: 2.2rem;
+      color: var(--text-main);
+      font-family: var(--font-serif);
+      font-weight: 300;
+      line-height: 1.3;
+    }
+
+    .hero-subtext {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      max-width: 520px;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 1.5rem;
+      margin-top: 1.5rem;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      padding: 0.75rem 1.5rem;
+      border: 1px solid var(--border-color);
+      font-size: 0.85rem;
+      font-weight: 500;
+      background-color: transparent;
+      cursor: pointer;
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .btn:hover {
+      border-color: var(--border-hover);
+      background-color: rgba(255, 255, 255, 0.03);
+      transform: translateY(-2px);
+    }
+
+    .btn-primary {
+      border-color: var(--accent-blue);
+      color: var(--accent-blue);
+    }
+
+    .btn-primary:hover {
+      border-color: var(--accent-blue);
+      background-color: rgba(88, 166, 255, 0.08);
+      box-shadow: 0 0 16px rgba(88, 166, 255, 0.15);
+    }
+
+    /* Terminal Widget */
+    .terminal-window {
+      background-color: #0f1015;
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      box-shadow: var(--shadow-md);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      height: 520px;
+    }
+
+    .terminal-header {
+      background-color: #08090c;
+      padding: 0.75rem 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .terminal-dots {
+      display: flex;
+      gap: 0.4rem;
+    }
+
+    .terminal-dot {
+      width: 11px;
+      height: 11px;
+      border-radius: 50%;
+    }
+
+    .terminal-dot.red { background-color: #ff5f56; }
+    .terminal-dot.yellow { background-color: #ffbd2e; }
+    .terminal-dot.green { background-color: #27c93f; }
+
+    .terminal-title {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+    }
+
+    .terminal-tabs {
+      display: flex;
+      background-color: #08090c;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .terminal-tab {
+      padding: 0.5rem 1rem;
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      border-right: 1px solid var(--border-color);
+      cursor: pointer;
+      background-color: #0b0c0f;
+    }
+
+    .terminal-tab.active {
+      color: var(--text-main);
+      background-color: #0f1015;
+      border-bottom: 1px solid transparent;
+    }
+
+    .terminal-body {
+      flex: 1;
+      padding: 1.2rem;
+      font-size: 0.8rem;
+      line-height: 1.5;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 0.8rem;
+    }
+
+    .terminal-tab-content {
+      display: none;
+      height: 100%;
+    }
+
+    .terminal-tab-content.active {
+      display: block;
+    }
+
+    .json-key { color: var(--accent-blue); }
+    .json-string { color: var(--accent-teal); }
+    .json-number { color: #d19a66; }
+    .json-bool { color: var(--accent-amber); }
+    .terminal-comment { color: #5c6370; font-style: italic; }
+
+    .terminal-output {
+      white-space: pre-wrap;
+      word-break: break-all;
+    }
+
+    .terminal-prompt-row {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-top: auto;
+      border-top: 1px solid rgba(30, 34, 43, 0.5);
+      padding-top: 0.8rem;
+    }
+
+    .terminal-prompt {
+      color: var(--accent-teal);
+      white-space: nowrap;
+    }
+
+    .terminal-input-wrapper {
+      flex: 1;
+      position: relative;
+    }
+
+    .terminal-input {
+      width: 100%;
+      background: transparent;
+      border: none;
+      outline: none;
+      color: var(--text-main);
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+    }
+
+    /* Observability Dashboard (metrics.sh tab) */
+    .metrics-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.2rem;
+      height: 100%;
+      padding: 0.5rem 0;
+    }
+
+    .metric-box {
+      border: 1px solid rgba(30, 34, 43, 0.8);
+      background-color: rgba(11, 12, 15, 0.4);
+      padding: 1rem;
+      border-radius: 4px;
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+    }
+
+    .metric-box-title {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .metric-box-value {
+      font-size: 1.2rem;
+      color: var(--text-main);
+      font-weight: 500;
+    }
+
+    .metric-progress-bg {
+      width: 100%;
+      height: 4px;
+      background-color: var(--border-color);
+      border-radius: 2px;
+      overflow: hidden;
+      margin-top: 0.2rem;
+    }
+
+    .metric-progress-bar {
+      height: 100%;
+      background-color: var(--accent-blue);
+      width: 0%;
+      transition: width 0.5s ease;
+    }
+
+    .metric-progress-bar.amber {
+      background-color: var(--accent-amber);
+    }
+
+    .metric-progress-bar.teal {
+      background-color: var(--accent-teal);
+    }
+
+    .logs-panel {
+      grid-column: span 2;
+      border: 1px solid rgba(30, 34, 43, 0.8);
+      background-color: #090a0d;
+      border-radius: 4px;
+      padding: 0.8rem;
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      height: 150px;
+      overflow-y: auto;
+    }
+
+    .log-line {
+      margin-bottom: 0.3rem;
+      color: #98c379;
+      opacity: 0.85;
+    }
+    .log-line.warn { color: var(--accent-amber); }
+    .log-line.error { color: #e06c75; }
+    .log-line.info { color: var(--text-muted); }
+
+    /* Engineering Story Section */
+    .story-layout {
+      display: grid;
+      grid-template-columns: 280px 1fr;
+      gap: 4rem;
+      margin-top: 2rem;
+    }
+
+    .story-selector {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      border-right: 1px solid var(--border-color);
+      padding-right: 2rem;
+    }
+
+    .story-selector-btn {
+      background: transparent;
+      border: 1px solid transparent;
+      color: var(--text-muted);
+      text-align: left;
+      padding: 1rem 1.5rem;
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      border-radius: 4px;
+      position: relative;
+    }
+
+    .story-selector-btn:hover {
+      color: var(--text-main);
+      background-color: rgba(255, 255, 255, 0.02);
+    }
+
+    .story-selector-btn.active {
+      color: var(--accent-blue);
+      background-color: rgba(88, 166, 255, 0.05);
+      border-color: rgba(88, 166, 255, 0.2);
+    }
+
+    .story-selector-btn.active::after {
+      content: "";
+      position: absolute;
+      right: -2rem;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 4px;
+      height: 24px;
+      background-color: var(--accent-blue);
+    }
+
+    .story-content-panel {
+      display: none;
+      animation: fadeIn 0.4s ease forwards;
+    }
+
+    .story-content-panel.active {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .story-header {
+      margin-bottom: 2.5rem;
+    }
+
+    .story-context {
+      font-size: 0.8rem;
+      color: var(--accent-blue);
+      margin-bottom: 0.5rem;
+    }
+
+    .story-title {
+      font-size: 2.8rem;
+      margin-bottom: 0.25rem;
+    }
+
+    .story-role {
+      font-size: 0.8rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+
+    .story-metrics-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.5rem;
+      margin-bottom: 3rem;
+    }
+
+    .story-metric-card {
+      background-color: var(--bg-card);
+      border: 1px solid var(--border-color);
+      padding: 1.5rem;
+      border-radius: 4px;
+      transition: all 0.3s ease;
+    }
+
+    .story-metric-card:hover {
+      border-color: var(--border-hover);
+      transform: translateY(-2px);
+    }
+
+    .story-metric-val {
+      font-size: 2rem;
+      font-family: var(--font-serif);
+      font-weight: bold;
+      color: var(--accent-teal);
+      margin-bottom: 0.25rem;
+    }
+
+    .story-metric-label {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+    }
+
+    .story-bullets {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .story-bullets li {
+      position: relative;
+      padding-left: 2rem;
+      font-size: 0.95rem;
+      color: var(--text-main);
+    }
+
+    .story-bullets li::before {
+      content: "→";
+      position: absolute;
+      left: 0;
+      top: 0;
+      color: var(--accent-blue);
+    }
+
+    /* Saga Pattern Simulator Container */
+    .saga-simulator-container {
+      margin-top: 3rem;
+      border: 1px solid var(--border-color);
+      background-color: #0f1015;
+      border-radius: 6px;
+      padding: 2rem;
+    }
+
+    .saga-sim-title-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1.5rem;
+      border-bottom: 1px solid var(--border-color);
+      padding-bottom: 1rem;
+    }
+
+    .saga-sim-title {
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--accent-blue);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .saga-sim-actions {
+      display: flex;
+      gap: 1rem;
+    }
+
+    .saga-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+      position: relative;
+      margin-bottom: 1.5rem;
+    }
+
+    /* Flow lines connecting steps */
+    .saga-flow-line {
+      position: absolute;
+      top: 40px;
+      height: 2px;
+      background-color: var(--border-color);
+      z-index: 1;
+    }
+    .saga-flow-line.l1 {
+      left: 22%;
+      right: 52%;
+    }
+    .saga-flow-line.l2 {
+      left: 55%;
+      right: 22%;
+    }
+    .saga-flow-indicator {
+      position: absolute;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background-color: var(--accent-blue);
+      top: -3px;
+      left: 0;
+      opacity: 0;
+    }
+
+    .saga-service-card {
+      background-color: var(--bg-card);
+      border: 1px solid var(--border-color);
+      padding: 1.5rem;
+      border-radius: 4px;
+      text-align: center;
+      z-index: 2;
+      transition: all 0.3s ease;
+    }
+
+    .saga-service-card.active {
+      border-color: var(--accent-blue);
+      box-shadow: 0 0 12px rgba(88, 166, 255, 0.15);
+    }
+
+    .saga-service-card.success {
+      border-color: var(--accent-teal);
+      box-shadow: 0 0 12px rgba(29, 158, 117, 0.15);
+    }
+
+    .saga-service-card.failed {
+      border-color: #e06c75;
+      box-shadow: 0 0 12px rgba(224, 108, 117, 0.15);
+      animation: shake 0.3s ease;
+    }
+
+    @keyframes shake {
+      0%, 100% { transform: translateX(0); }
+      25% { transform: translateX(-4px); }
+      75% { transform: translateX(4px); }
+    }
+
+    .saga-service-card.compensated {
+      border-color: var(--accent-amber);
+      box-shadow: 0 0 12px rgba(210, 153, 34, 0.15);
+    }
+
+    .saga-service-name {
+      font-size: 0.9rem;
+      font-weight: 500;
+      margin-bottom: 0.5rem;
+    }
+
+    .saga-service-status {
+      font-size: 0.7rem;
+      font-family: var(--font-mono);
+      text-transform: uppercase;
+      padding: 0.15rem 0.5rem;
+      background-color: #0b0c0f;
+      border: 1px solid var(--border-color);
+      border-radius: 4px;
+      display: inline-block;
+      color: var(--text-muted);
+    }
+
+    .saga-service-status.pending { color: var(--accent-blue); border-color: rgba(88, 166, 255, 0.3); }
+    .saga-service-status.ok { color: var(--accent-teal); border-color: rgba(29, 158, 117, 0.3); }
+    .saga-service-status.err { color: #e06c75; border-color: rgba(224, 108, 117, 0.3); }
+    .saga-service-status.reversed { color: var(--accent-amber); border-color: rgba(210, 153, 34, 0.3); }
+
+    .saga-console {
+      background-color: #08090c;
+      border: 1px solid var(--border-color);
+      border-radius: 4px;
+      padding: 0.8rem 1.2rem;
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      height: 120px;
+      overflow-y: auto;
+    }
+
+    .saga-console-line {
+      margin-bottom: 0.3rem;
+      color: var(--text-muted);
+    }
+    .saga-console-line.action { color: var(--accent-blue); }
+    .saga-console-line.compensate { color: var(--accent-amber); }
+    .saga-console-line.success { color: var(--accent-teal); }
+    .saga-console-line.fail { color: #e06c75; }
+
+    /* Projects Section */
+    .project-filter-bar {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 2.5rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .project-filter-btn {
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      background: transparent;
+      border: 1px solid var(--border-color);
+      color: var(--text-muted);
+      padding: 0.5rem 1.2rem;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .project-filter-btn:hover {
+      color: var(--text-main);
+      border-color: var(--border-hover);
+      background-color: rgba(255, 255, 255, 0.02);
+    }
+
+    .project-filter-btn.active {
+      color: var(--accent-blue);
+      border-color: var(--accent-blue);
+      background-color: rgba(88, 166, 255, 0.05);
+      box-shadow: 0 0 12px rgba(88, 166, 255, 0.1);
+    }
+
+    .project-card.hidden {
+      display: none;
+    }
+
+    .project-tag.private {
+      color: #f85149;
+      border-color: rgba(248, 81, 73, 0.2);
+      background-color: rgba(248, 81, 73, 0.03);
+    }
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 2.5rem;
+      margin-top: 2rem;
+    }
+
+    .project-card {
+      background-color: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 6px;
+      padding: 2.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      position: relative;
+    }
+
+    .project-card:hover {
+      border-color: var(--border-hover);
+      transform: translateY(-4px);
+    }
+
+    .project-card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+    }
+
+    .project-tag {
+      font-size: 0.75rem;
+      font-family: var(--font-mono);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      border: 1px solid rgba(88, 166, 255, 0.2);
+      color: var(--accent-blue);
+      padding: 0.2rem 0.6rem;
+      border-radius: 4px;
+      background-color: rgba(88, 166, 255, 0.03);
+    }
+
+    .project-tag.mobile {
+      color: var(--accent-teal);
+      border-color: rgba(29, 158, 117, 0.2);
+      background-color: rgba(29, 158, 117, 0.03);
+    }
+
+    .project-tag.ai {
+      color: var(--accent-amber);
+      border-color: rgba(210, 153, 34, 0.2);
+      background-color: rgba(210, 153, 34, 0.03);
+    }
+
+    .project-tag.web {
+      color: #98c379;
+      border-color: rgba(152, 195, 121, 0.2);
+      background-color: rgba(152, 195, 121, 0.03);
+    }
+
+    @keyframes shakeAnimation {
+      0% { transform: translate(1px, 1px) rotate(0deg); }
+      10% { transform: translate(-1px, -2px) rotate(-1deg); }
+      20% { transform: translate(-3px, 0px) rotate(1deg); }
+      30% { transform: translate(0px, 2px) rotate(0deg); }
+      40% { transform: translate(1px, -1px) rotate(1deg); }
+      50% { transform: translate(-1px, 2px) rotate(-1deg); }
+      60% { transform: translate(-3px, 1px) rotate(0deg); }
+      70% { transform: translate(2px, 1px) rotate(-1deg); }
+      80% { transform: translate(-1px, -1px) rotate(1deg); }
+      90% { transform: translate(2px, 2px) rotate(0deg); }
+      100% { transform: translate(1px, -2px) rotate(-1deg); }
+    }
+
+    .page-shake {
+      animation: shakeAnimation 0.15s infinite;
+      overflow: hidden;
+      max-width: 100vw;
+    }
+
+    .project-title {
+      font-size: 2rem;
+    }
+
+    .project-card:hover .project-arrow {
+      transform: translateX(4px);
+      color: var(--accent-blue);
+    }
+
+    .project-arrow {
+      transition: transform 0.3s ease, color 0.3s ease;
+      color: var(--text-muted);
+    }
+
+    .project-desc {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      flex: 1;
+    }
+
+    .project-tech {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-top: auto;
+    }
+
+    .tech-pill {
+      font-size: 0.75rem;
+      background-color: rgba(255, 255, 255, 0.02);
+      border: 1px solid var(--border-color);
+      color: var(--text-muted);
+      padding: 0.2rem 0.6rem;
+      border-radius: 4px;
+    }
+
+    /* Sandbox API Drawer */
+    .sandbox-trigger-btn {
+      background: transparent;
+      border: 1px solid var(--border-color);
+      color: var(--text-main);
+      padding: 0.5rem 1rem;
+      font-size: 0.75rem;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      transition: all 0.2s ease;
+      margin-top: 1rem;
+      border-radius: 4px;
+      font-family: var(--font-mono);
+      width: fit-content;
+    }
+
+    .sandbox-trigger-btn:hover {
+      border-color: var(--accent-blue);
+      color: var(--accent-blue);
+    }
+
+    .sandbox-drawer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      background-color: #08090c;
+      border: 0 solid var(--border-color);
+      border-radius: 4px;
+      margin-top: 1rem;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .sandbox-drawer.open {
+      max-height: 250px;
+      border-width: 1px;
+      padding: 1rem;
+    }
+
+    .sandbox-drawer-header {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.7rem;
+      color: var(--text-muted);
+      border-bottom: 1px solid var(--border-color);
+      padding-bottom: 0.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .sandbox-console {
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      overflow-y: auto;
+      flex: 1;
+      height: 150px;
+      line-height: 1.4;
+    }
+
+    /* Engineering Principles Section */
+    .principles-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 3rem;
+      margin-top: 2rem;
+    }
+
+    .principle-card {
+      background-color: var(--bg-card);
+      border: 1px solid var(--border-color);
+      padding: 2.5rem;
+      border-radius: 6px;
+      position: relative;
+      overflow: hidden;
+      transition: border-color 0.3s ease;
+    }
+
+    .principle-card:hover {
+      border-color: var(--border-hover);
+    }
+
+    .principle-num {
+      position: absolute;
+      right: 1.5rem;
+      top: 1rem;
+      font-size: 5rem;
+      font-weight: bold;
+      color: var(--border-color);
+      opacity: 0.4;
+      font-family: var(--font-serif);
+      line-height: 1;
+      pointer-events: none;
+      transition: color 0.3s ease;
+    }
+
+    .principle-card:hover .principle-num {
+      color: rgba(88, 166, 255, 0.15);
+    }
+
+    .principle-title {
+      font-size: 0.95rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--accent-blue);
+      margin-bottom: 1rem;
+      font-family: var(--font-mono);
+    }
+
+    .principle-desc {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      max-width: 480px;
+    }
+
+    /* Skill Bars Section */
+    .stack-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 3rem;
+      margin-top: 2rem;
+    }
+
+    .stack-column h3 {
+      font-size: 1.25rem;
+      margin-bottom: 1.5rem;
+      color: var(--text-main);
+      border-bottom: 1px solid var(--border-color);
+      padding-bottom: 0.75rem;
+    }
+
+    .skill-item {
+      margin-bottom: 1.2rem;
+    }
+
+    .skill-info {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.8rem;
+      margin-bottom: 0.4rem;
+    }
+
+    .skill-name {
+      color: var(--text-main);
+    }
+
+    .skill-percentage {
+      color: var(--text-muted);
+    }
+
+    .skill-bar-bg {
+      width: 100%;
+      height: 5px;
+      background-color: var(--border-color);
+      border-radius: 2px;
+      overflow: hidden;
+    }
+
+    .skill-bar-fill {
+      height: 100%;
+      width: 0%; /* Initial state for animation */
+      background-color: var(--accent-teal);
+      border-radius: 2px;
+      transition: width 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .stack-column:nth-child(1) .skill-bar-fill {
+      background-color: var(--accent-blue);
+    }
+
+    .stack-column.learning-col .skill-bar-fill {
+      background-color: var(--accent-amber);
+    }
+
+    /* Contact Section */
+    .contact-wrapper {
+      max-width: 800px;
+      margin: 0 auto;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+      align-items: center;
+    }
+
+    .contact-statement {
+      font-size: 2rem;
+      font-family: var(--font-serif);
+      font-weight: 300;
+      line-height: 1.4;
+      color: var(--text-main);
+    }
+
+    .contact-links {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1.5rem;
+      margin-top: 1rem;
+    }
+
+    .contact-btn {
+      padding: 0.8rem 1.8rem;
+      border: 1px solid var(--border-color);
+      border-radius: 4px;
+      font-size: 0.9rem;
+      transition: all 0.2s ease;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .contact-btn:hover {
+      border-color: var(--text-main);
+      background-color: rgba(255, 255, 255, 0.03);
+    }
+
+    /* Footer */
+    footer {
+      padding: 4rem 0;
+      border-top: 1px solid var(--border-color);
+      background-color: #08090c;
+    }
+
+    .footer-wrapper {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.75rem;
+      color: var(--text-muted);
+    }
+
+    .footer-meta {
+      display: flex;
+      gap: 2rem;
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 900px) {
+      .hero-wrapper {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+        padding-top: 6rem;
+      }
+      .terminal-window {
+        height: 400px;
+      }
+      .story-layout {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+      }
+      .story-selector {
+        border-right: none;
+        border-bottom: 1px solid var(--border-color);
+        padding-right: 0;
+        padding-bottom: 1.5rem;
+        flex-direction: row;
+        overflow-x: auto;
+      }
+      .story-selector-btn.active::after {
+        width: 24px;
+        height: 4px;
+        bottom: -1.5rem;
+        top: auto;
+        left: 50%;
+        transform: translateX(-50%);
+      }
+      .story-metrics-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 700px) {
+      html {
+        font-size: 14px;
+      }
+      .hero-name {
+        font-size: 3.2rem;
+      }
+      .hero-statement {
+        font-size: 1.8rem;
+      }
+      .projects-grid, .principles-grid, .stack-grid {
+        grid-template-columns: 1fr;
+      }
+      .saga-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+      }
+      .saga-flow-line {
+        display: none;
+      }
+      .story-metrics-grid {
+        grid-template-columns: 1fr;
+      }
+      nav {
+        display: none; /* simple hidden state for demo, can toggle with JS class */
+      }
+      .menu-toggle {
+        display: block;
+      }
+      .footer-wrapper {
+        flex-direction: column;
+        gap: 1.5rem;
+        align-items: flex-start;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <header>
+    <div class="container nav-container">
+      <a href="#" class="logo">
+        <span class="logo-dot"></span>ankit.rai
+      </a>
+      
+      <nav id="main-nav">
+        <a href="#story" class="nav-link">01. Story</a>
+        <a href="#projects" class="nav-link">02. Projects</a>
+        <a href="#principles" class="nav-link">03. Principles</a>
+        <a href="#stack" class="nav-link">04. Stack</a>
+        <a href="#contact" class="nav-link">05. Contact</a>
+        <a href="./Ankit_Rai_Resume.pdf" download="Ankit_Rai_Resume.pdf" class="btn" style="padding: 0.35rem 0.85rem; font-size: 0.75rem; border-color: rgba(88, 166, 255, 0.4); color: var(--accent-blue);">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 0.25rem; vertical-align: middle;"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+          Resume
+        </a>
+        <div class="theme-selector-container" style="display: flex; align-items: center; gap: 0.4rem; background: rgba(88, 166, 255, 0.03); border: 1px solid var(--border-color); padding: 0.25rem 0.5rem; border-radius: 4px; font-family: var(--font-mono); font-size: 0.7rem;">
+          <span style="color: var(--text-muted); text-transform: uppercase; font-size: 0.6rem; letter-spacing: 0.05em;">THEME:</span>
+          <select id="theme-selector" onchange="setTheme(this.value)" style="background: transparent; border: none; color: var(--accent-blue); font-family: var(--font-mono); font-size: 0.7rem; outline: none; cursor: pointer; padding-right: 0.2rem;">
+            <option value="default" style="background: var(--bg-card); color: var(--text-main);">default.cfg</option>
+            <option value="matrix" style="background: var(--bg-card); color: var(--text-main);">matrix.sys</option>
+            <option value="cyberpunk" style="background: var(--bg-card); color: var(--text-main);">cyber.net</option>
+            <option value="nord" style="background: var(--bg-card); color: var(--text-main);">nord.ice</option>
+            <option value="light" style="background: var(--bg-card); color: var(--text-main);">light.log</option>
+          </select>
+        </div>
+        <div class="sys-status">
+          <span class="status-pulse"></span>
+          <span>SYSTEM: ONLINE</span>
+        </div>
+      </nav>
+
+      <button class="menu-toggle" aria-label="Toggle Menu" onclick="toggleMobileNav()">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M3 12h18M3 6h18M3 18h18" stroke-linecap="round"/>
+        </svg>
+      </button>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section id="hero" style="border-bottom: 1px solid var(--border-color); padding-top: 2rem;">
+    <div class="container hero-wrapper">
+      
+      <!-- Hero Left -->
+      <div class="hero-content reveal">
+        <!-- Ready for hire status badge with marketing focus -->
+        <div style="display: inline-flex; align-items: center; gap: 0.5rem; background-color: rgba(29, 158, 117, 0.08); border: 1px solid rgba(29, 158, 117, 0.25); color: var(--accent-teal); padding: 0.35rem 0.85rem; border-radius: 100px; font-size: 0.75rem; font-weight: 500; margin-bottom: 1rem; text-transform: uppercase; letter-spacing: 0.05em; align-self: flex-start;">
+          <span style="display: inline-block; width: 6px; height: 6px; background-color: var(--accent-teal); border-radius: 50%; animation: pulse 2s infinite;"></span>
+          Available for hire · seeking senior backend roles
+        </div>
+
+        <div class="profile-img-container">
+          <img src="./profile.jpg" alt="Ankit Rai" class="hero-profile-img">
+        </div>
+        
+        <h1 class="hero-name serif-font italic" style="margin-bottom: 0.25rem;">Ankit Rai</h1>
+        <div class="hero-tag" style="margin-bottom: 0.75rem;">Backend · Distributed Systems · Hyderabad</div>
+
+        <!-- High visibility email copy widget for hiring managers -->
+        <div style="margin-bottom: 1rem; font-size: 0.85rem; display: flex; align-items: center; gap: 0.5rem; color: var(--text-muted);">
+          <span>Email: <a href="mailto:ankitrai.pro@gmail.com" class="json-string" style="font-weight: 500; border-bottom: 1px dashed var(--accent-teal);">ankitrai.pro@gmail.com</a></span>
+          <button onclick="copyEmailToClipboard()" id="copy-email-btn" style="background: transparent; border: 1px solid var(--border-color); color: var(--text-main); font-family: var(--font-mono); font-size: 0.75rem; padding: 0.2rem 0.6rem; border-radius: 4px; cursor: pointer; transition: all 0.2s ease;">Copy Address</button>
+        </div>
+
+        <!-- Lightbulb Tip Box (fades in after copying) -->
+        <div id="lightbulb-tip-box" style="max-height: 0; opacity: 0; overflow: hidden; transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1); background-color: rgba(210, 153, 34, 0.04); border: 0 solid rgba(210, 153, 34, 0.2); border-radius: 6px; padding: 0; margin-bottom: 0;">
+          <div style="padding: 0.8rem 1rem; display: flex; align-items: flex-start; gap: 0.75rem; font-size: 0.8rem; line-height: 1.4; color: #e5c07b; font-family: var(--font-mono);">
+            <span style="font-size: 1.2rem; line-height: 1;">💡</span>
+            <div>
+              <strong style="color: var(--accent-amber);">Observability Tip:</strong> Directly emailing Ankit triggers a high-priority interrupt thread. Drop a line detailing constraints and distributed scale for 10x processing speeds.
+            </div>
+          </div>
+        </div>
+
+        <div class="hero-statement">
+          I design backend systems that <span class="italic">survive production</span>.
+        </div>
+        <div class="hero-subtext" style="margin-bottom: 1rem;">
+          I build resilient, distributed architectures at ZF Group. My core design thesis centers on constraints, systems maturity, and observability. I value boring reliable solutions over fleeting hype.
+        </div>
+
+        <!-- Surprising Reveal Element -->
+        <div style="margin-bottom: 1.5rem;" class="reveal-easter-egg">
+          <button onclick="revealSecretInsight()" id="reveal-btn" style="background: rgba(88, 166, 255, 0.02); border: 1px dashed var(--border-color); color: var(--accent-blue); font-family: var(--font-mono); font-size: 0.75rem; padding: 0.4rem 0.9rem; border-radius: 4px; cursor: pointer; transition: all 0.3s ease; display: inline-flex; align-items: center; gap: 0.5rem;">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+            [ REVEAL SYSTEMS EASTER EGG ]
+          </button>
+          <div id="secret-insight-box" style="max-height: 0; opacity: 0; overflow: hidden; transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1); background-color: rgba(18, 19, 24, 0.6); border: 0 solid var(--border-color); border-radius: 4px; font-size: 0.8rem; line-height: 1.4; color: var(--text-muted); margin-top: 0.5rem; position: relative;">
+            <div style="padding: 0.8rem 1rem;">
+              <span style="color: var(--accent-teal); font-weight: 500;">[DECRYPTION KEY ACTIVATED]</span><br>
+              <div style="margin-top: 0.5rem; display: flex; flex-direction: column; gap: 0.8rem;">
+                <p>"Boring is beautiful. In a world full of microservices hype and trend-chasing, true engineering maturity is building a system so reliable, observably robust, and boring that you sleep peacefully through production deployments."</p>
+                <p style="color: var(--text-main);">"I have made more mistakes than the average developer — but without burning the company's cost. Every failure is confined inside isolated sandbox boundaries, ensuring the business never pays for the architectural lesson."</p>
+                <p style="border-top: 1px solid var(--border-color); padding-top: 0.8rem; font-style: italic; display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap;">
+                  <span>🎤 I love attending tech events and I document that too! Here is the repo:</span>
+                  <a href="https://github.com/SudegoraAnkit/events" target="_blank" rel="noopener" style="color: var(--accent-blue); text-decoration: underline; font-weight: 500;">SudegoraAnkit/events</a>
+                </p>
+                <div style="border-top: 1px solid var(--border-color); padding-top: 0.8rem; font-size: 0.75rem; font-family: var(--font-mono); color: var(--text-muted);">
+                  <strong style="color: var(--accent-amber);">🔓 [Root Access Commands]</strong> Try typing these in the terminal widget:
+                  <ul style="list-style: none; margin-top: 0.3rem; padding-left: 0.5rem; display: flex; flex-direction: column; gap: 0.25rem;">
+                    <li>• <span style="color: var(--accent-blue);">chaos</span> — inject simulated fault-injection logs</li>
+                    <li>• <span style="color: var(--accent-blue);">shake</span> / <span style="color: var(--accent-blue);">sake</span> — trigger viewport seismic acceleration</li>
+                    <li>• <span style="color: var(--accent-blue);">tear</span> — execute structural shear viewport tearing</li>
+                    <li>• <span style="color: var(--accent-blue);">matrix</span> — stream falling green rain machine code</li>
+                    <li>• <span style="color: var(--accent-blue);">glitch</span> — execute cyberpunk layout glitch shift</li>
+                    <li>• <span style="color: var(--accent-blue);">scan</span> — run green laser scan sweeper sweeping line</li>
+                    <li>• <span style="color: var(--accent-blue);">theme &lt;name&gt;</span> — switch theme (<span style="color: var(--accent-teal);">default</span>, <span style="color: var(--accent-teal);">matrix</span>, <span style="color: var(--accent-teal);">cyberpunk</span>, <span style="color: var(--accent-teal);">nord</span>, <span style="color: var(--accent-teal);">light</span>)</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="hero-actions">
+          <a href="mailto:ankitrai.pro@gmail.com" class="btn btn-primary">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+              <polyline points="22,6 12,13 2,6"></polyline>
+            </svg>
+            Email Me
+          </a>
+          <a href="./Ankit_Rai_Resume.pdf" download="Ankit_Rai_Resume.pdf" class="btn" style="border-color: var(--accent-teal); color: var(--accent-teal);">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+              <polyline points="7 10 12 15 17 10"></polyline>
+              <line x1="12" y1="15" x2="12" y2="3"></line>
+            </svg>
+            Download Resume
+          </a>
+          <a href="https://linkedin.com/in/ankitsudegora" target="_blank" rel="noopener" class="btn">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+              <rect x="2" y="9" width="4" height="12"></rect>
+              <circle cx="4" cy="4" r="2"></circle>
+            </svg>
+            LinkedIn
+          </a>
+          <a href="https://github.com/SudegoraAnkit" target="_blank" rel="noopener" class="btn">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+            </svg>
+            GitHub
+          </a>
+        </div>
+        <div style="display: flex; gap: 1.25rem; margin-top: 1.25rem; flex-wrap: wrap;">
+          <a href="https://www.skills.google/public_profiles/21ca54db-5fc1-403b-9780-7fd71507e3bf" target="_blank" rel="noopener" style="font-size: 0.8rem; color: var(--text-muted); display: flex; align-items: center; gap: 0.4rem;" class="nav-link">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="7"></circle><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"></polyline></svg>
+            Google Skills
+          </a>
+          <a href="https://g.dev/ankitsudegora" target="_blank" rel="noopener" style="font-size: 0.8rem; color: var(--text-muted); display: flex; align-items: center; gap: 0.4rem;" class="nav-link">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
+            g.dev
+          </a>
+          <a href="https://leetcode.com/ankitraidev/" target="_blank" rel="noopener" style="font-size: 0.8rem; color: var(--text-muted); display: flex; align-items: center; gap: 0.4rem;" class="nav-link">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19h16a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2z"></path><path d="M8 9h8"></path><path d="M8 13h6"></path></svg>
+            LeetCode
+          </a>
+          <a href="https://www.geeksforgeeks.org/user/ankitsudegora/" target="_blank" rel="noopener" style="font-size: 0.8rem; color: var(--text-muted); display: flex; align-items: center; gap: 0.4rem;" class="nav-link">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="17 11 22 16 17 21"></polyline><polyline points="7 11 2 16 7 21"></polyline><polyline points="12 4 12 20"></polyline></svg>
+            GeeksforGeeks
+          </a>
+        </div>
+      </div>
+
+      <!-- Hero Right (Terminal Widget) -->
+      <div class="reveal" style="transition-delay: 0.1s;">
+        <div class="terminal-window">
+          
+          <!-- Terminal Header -->
+          <div class="terminal-header">
+            <div class="terminal-dots">
+              <span class="terminal-dot red"></span>
+              <span class="terminal-dot yellow"></span>
+              <span class="terminal-dot green"></span>
+            </div>
+            <div class="terminal-title">guest@zf-systems:~</div>
+            <div style="width: 40px;"></div>
+          </div>
+
+          <!-- Terminal Tab selector -->
+          <div class="terminal-tabs">
+            <div class="terminal-tab active" id="tab-json" onclick="switchTerminalTab('json')">console.json</div>
+            <div class="terminal-tab" id="tab-metrics" onclick="switchTerminalTab('metrics')">metrics.sh</div>
+          </div>
+
+          <!-- Terminal Body -->
+          <div class="terminal-body">
+            
+            <!-- JSON Profile Tab -->
+            <div id="content-json" class="terminal-tab-content active">
+              <div class="terminal-output" id="json-writer"></div>
+            </div>
+
+            <!-- Observability metrics Tab -->
+            <div id="content-metrics" class="terminal-tab-content">
+              <div class="metrics-grid">
+                
+                <div class="metric-box">
+                  <div class="metric-box-title">JVM Heap Size</div>
+                  <div class="metric-box-value" id="metric-heap">342 MB / 1024 MB</div>
+                  <div class="metric-progress-bg">
+                    <div class="metric-progress-bar" id="bar-heap" style="width: 33%;"></div>
+                  </div>
+                </div>
+
+                <div class="metric-box">
+                  <div class="metric-box-title">Thread Count</div>
+                  <div class="metric-box-value" id="metric-threads">12 / 512 (Virt)</div>
+                  <div class="metric-progress-bg">
+                    <div class="metric-progress-bar teal" id="bar-threads" style="width: 50%;"></div>
+                  </div>
+                </div>
+
+                <div class="metric-box">
+                  <div class="metric-box-title">DB Pool (HikariCP)</div>
+                  <div class="metric-box-value" id="metric-db">4 / 10 Active</div>
+                  <div class="metric-progress-bg">
+                    <div class="metric-progress-bar teal" id="bar-db" style="width: 40%;"></div>
+                  </div>
+                </div>
+
+                <div class="metric-box">
+                  <div class="metric-box-title">Circuit Breaker</div>
+                  <div class="metric-box-value" id="metric-circuit" style="color: var(--accent-teal);">CLOSED</div>
+                  <div class="metric-progress-bg">
+                    <div class="metric-progress-bar teal" id="bar-circuit" style="width: 100%;"></div>
+                  </div>
+                </div>
+
+                <div class="logs-panel" id="metrics-logs-panel">
+                  <div class="log-line info">[SYSTEM] Activating telemetry monitors...</div>
+                  <div class="log-line info">[SYSTEM] HikariPool-1 - Connection pool initialized.</div>
+                  <div class="log-line info">[SYSTEM] Resilience4j - CircuitBreaker 'order-service' in CLOSED state.</div>
+                </div>
+
+              </div>
+            </div>
+
+            <!-- Shared command input prompt at bottom -->
+            <div class="terminal-prompt-row">
+              <span class="terminal-prompt">guest@ankitrai:~$</span>
+              <div class="terminal-input-wrapper">
+                <form id="terminal-form" onsubmit="handleTerminalCommand(event)">
+                  <input type="text" id="terminal-cli" class="terminal-input" placeholder="Type 'help' to inspect system logs..." autocomplete="off" autofocus>
+                </form>
+              </div>
+            </div>
+          </div>
+          <!-- Terminal Footer Status / Command Cheat Sheet -->
+          <div style="background: rgba(18, 19, 24, 0.9); border-top: 1px solid var(--border-color); padding: 0.5rem 1rem; font-family: var(--font-mono); font-size: 0.7rem; display: flex; flex-direction: column; gap: 0.5rem; position: relative; z-index: 10;">
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+              <span style="color: var(--text-muted); font-size: 0.65rem;">Session: active (tty1)</span>
+              <span id="cheat-sheet-btn" onclick="toggleTerminalCheatSheet()" style="cursor: pointer; color: var(--accent-blue); text-decoration: underline; display: inline-flex; align-items: center; gap: 0.25rem; user-select: none;">
+                <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
+                [ Toggle Commands Cheat Sheet ]
+              </span>
+            </div>
+            <!-- Collapsible Cheat Sheet Content -->
+            <div id="terminal-cheat-sheet" style="max-height: 0; opacity: 0; overflow: hidden; transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); display: flex; flex-direction: column; gap: 0.4rem; border-top: 0 solid var(--border-color); padding-top: 0;">
+              <div style="color: var(--accent-amber); font-weight: 500; margin-top: 0.2rem;">🔓 System Commands (Click to auto-type):</div>
+              <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.4rem; padding-left: 0.2rem;">
+                <div onclick="insertTerminalCommand('help')" style="cursor: pointer; color: var(--text-main); transition: color 0.2s;" onmouseover="this.style.color='var(--accent-teal)'" onmouseout="this.style.color='var(--text-main)'"><span style="color: var(--accent-blue);">help</span> — query standard commands</div>
+                <div onclick="insertTerminalCommand('system')" style="cursor: pointer; color: var(--text-main); transition: color 0.2s;" onmouseover="this.style.color='var(--accent-teal)'" onmouseout="this.style.color='var(--text-main)'"><span style="color: var(--accent-blue);">system</span> — view JVM/telemetry state</div>
+                <div onclick="insertTerminalCommand('logs')" style="cursor: pointer; color: var(--text-main); transition: color 0.2s;" onmouseover="this.style.color='var(--accent-teal)'" onmouseout="this.style.color='var(--text-main)'"><span style="color: var(--accent-blue);">logs</span> — stream microservice logs</div>
+                <div onclick="insertTerminalCommand('ping')" style="cursor: pointer; color: var(--text-main); transition: color 0.2s;" onmouseover="this.style.color='var(--accent-teal)'" onmouseout="this.style.color='var(--text-main)'"><span style="color: var(--accent-blue);">ping</span> — ping system infrastructure</div>
+                <div onclick="insertTerminalCommand('chaos')" style="cursor: pointer; color: var(--text-main); transition: color 0.2s;" onmouseover="this.style.color='var(--accent-teal)'" onmouseout="this.style.color='var(--text-main)'"><span style="color: var(--accent-blue);">chaos</span> — run fault injection demo</div>
+                <div onclick="insertTerminalCommand('shake')" style="cursor: pointer; color: var(--text-main); transition: color 0.2s;" onmouseover="this.style.color='var(--accent-teal)'" onmouseout="this.style.color='var(--text-main)'"><span style="color: var(--accent-blue);">shake</span> — trigger viewport earthquake</div>
+                <div onclick="insertTerminalCommand('tear')" style="cursor: pointer; color: var(--text-main); transition: color 0.2s;" onmouseover="this.style.color='var(--accent-teal)'" onmouseout="this.style.color='var(--text-main)'"><span style="color: var(--accent-blue);">tear</span> — execute viewport shear tear</div>
+                <div onclick="insertTerminalCommand('matrix')" style="cursor: pointer; color: var(--text-main); transition: color 0.2s;" onmouseover="this.style.color='var(--accent-teal)'" onmouseout="this.style.color='var(--text-main)'"><span style="color: var(--accent-blue);">matrix</span> — stream matrix digital rain</div>
+                <div onclick="insertTerminalCommand('glitch')" style="cursor: pointer; color: var(--text-main); transition: color 0.2s;" onmouseover="this.style.color='var(--accent-teal)'" onmouseout="this.style.color='var(--text-main)'"><span style="color: var(--accent-blue);">glitch</span> — execute UI layout glitch</div>
+                <div onclick="insertTerminalCommand('scan')" style="cursor: pointer; color: var(--text-main); transition: color 0.2s;" onmouseover="this.style.color='var(--accent-teal)'" onmouseout="this.style.color='var(--text-main)'"><span style="color: var(--accent-blue);">scan</span> — run green laser scan sweep</div>
+                <div onclick="insertTerminalCommand('clear')" style="cursor: pointer; color: var(--text-main); transition: color 0.2s;" onmouseover="this.style.color='var(--accent-teal)'" onmouseout="this.style.color='var(--text-main)'"><span style="color: var(--accent-blue);">clear</span> — clear console session buffer</div>
+              </div>
+              <div style="border-top: 1px dashed var(--border-color); padding-top: 0.4rem; color: var(--text-muted); font-size: 0.65rem;">
+                💡 Tip: Theme selection via console is supported. E.g., <span style="color: var(--accent-teal); cursor: pointer; text-decoration: underline;" onclick="insertTerminalCommand('theme cyberpunk')">theme cyberpunk</span>, <span style="color: var(--accent-teal); cursor: pointer; text-decoration: underline;" onclick="insertTerminalCommand('theme matrix')">theme matrix</span>, or <span style="color: var(--accent-teal); cursor: pointer; text-decoration: underline;" onclick="insertTerminalCommand('theme default')">theme default</span>.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Interactive Story Timeline -->
+  <section id="story">
+    <div class="container reveal">
+      <div class="section-label">01. Engineering Story</div>
+      
+      <div class="story-layout">
+        
+        <!-- Left Side selector -->
+        <div class="story-selector">
+          <button class="story-selector-btn active" onclick="switchStoryTab(event, 'zf')">ZF Group</button>
+          <button class="story-selector-btn" onclick="switchStoryTab(event, 'zenith')">Saga Showcase</button>
+          <button class="story-selector-btn" onclick="switchStoryTab(event, 'autosar')">AUTOSAR DSL</button>
+          <button class="story-selector-btn" onclick="switchStoryTab(event, 'migration')">Data Migration</button>
+        </div>
+
+        <!-- Right Side contents -->
+        <div class="story-content-wrapper">
+          
+          <!-- ZF Group Chapter -->
+          <div id="story-zf" class="story-content-panel active">
+            <div class="story-header">
+              <div class="story-context">Jan 2022 — Present</div>
+              <h2 class="story-title">ZF Group</h2>
+              <div class="story-role">Senior Software Engineer</div>
+            </div>
+            <div class="story-metrics-grid">
+              <div class="story-metric-card">
+                <div class="story-metric-val">30% ↑</div>
+                <div class="story-metric-label">User Efficiency</div>
+              </div>
+              <div class="story-metric-card">
+                <div class="story-metric-val">40% ↓</div>
+                <div class="story-metric-label">Manual Work</div>
+              </div>
+              <div class="story-metric-card">
+                <div class="story-metric-val">20% ↓</div>
+                <div class="story-metric-label">Operational Cost</div>
+              </div>
+              <div class="story-metric-card">
+                <div class="story-metric-val">15% ↑</div>
+                <div class="story-metric-label">Tool Adoption</div>
+              </div>
+            </div>
+            <ul class="story-bullets">
+              <li class="copy-sentence">Developed and maintained new features in the Eclipse Plugin for DSL, improving user efficiency by 30% through seamless component integration.</li>
+              <li class="copy-sentence">Engineered 10+ RESTful APIs and integrated MS-SQL and SharePoint database services, reducing manual data exchange processes by 40%.</li>
+              <li class="copy-sentence">Designed a telematics tracking solution that captures real-time developer tool usage metrics, yielding a 20% decrease in operational costs.</li>
+              <li class="copy-sentence">Worked on a modern GUI using Electron and React.js, integrating web services and databases to enhance user experience and increase tool adoption by 15%.</li>
+            </ul>
+          </div>
+
+          <!-- Saga Showcase Chapter -->
+          <div id="story-zenith" class="story-content-panel">
+            <div class="story-header">
+              <div class="story-context">Distributed Systems Architecture Showcase</div>
+              <h2 class="story-title">Saga Showcase</h2>
+              <div class="story-role">Architectural Simulation</div>
+            </div>
+            <div class="story-metrics-grid">
+              <div class="story-metric-card">
+                <div class="story-metric-val">JDK 21</div>
+                <div class="story-metric-label">Virtual Threads</div>
+              </div>
+              <div class="story-metric-card">
+                <div class="story-metric-val">Saga</div>
+                <div class="story-metric-label">Pattern Orchestrated</div>
+              </div>
+              <div class="story-metric-card">
+                <div class="story-metric-val">0%</div>
+                <div class="story-metric-label">Dirty Read State</div>
+              </div>
+              <div class="story-metric-card">
+                <div class="story-metric-val">2.4k rps</div>
+                <div class="story-metric-label">Simulated Throughput</div>
+              </div>
+            </div>
+            <ul class="story-bullets" style="margin-bottom: 2rem;">
+              <li class="copy-sentence">Leveraged Java 21 virtual threads to process transactional requests concurrently, avoiding standard pool exhaustion constraints under spike conditions.</li>
+              <li class="copy-sentence">Orchestrated order operations across catalog, billing, and logistics boundaries via a custom Saga engine built using Spring Boot and transactional outbox pattern.</li>
+              <li class="copy-sentence">Protected downstream services by wrapping network integrations inside Resilience4j circuit breakers and custom fallbacks.</li>
+            </ul>
+
+            <!-- Interactive Saga Simulator -->
+            <div class="saga-simulator-container">
+              <div class="saga-sim-title-bar">
+                <div class="saga-sim-title">
+                  <span class="logo-dot"></span> Saga Transaction Simulator
+                </div>
+                <div class="saga-sim-actions">
+                  <button class="btn btn-primary" onclick="runSagaSimulation(true)" id="saga-success-btn" style="padding: 0.4rem 1rem; font-size: 0.75rem;">Simulate Success</button>
+                  <button class="btn" onclick="runSagaSimulation(false)" id="saga-fail-btn" style="padding: 0.4rem 1rem; font-size: 0.75rem; border-color: #e06c75; color: #e06c75;">Simulate Failure</button>
+                </div>
+              </div>
+
+              <div class="saga-grid">
+                
+                <!-- Line connecting 1 -> 2 -->
+                <div class="saga-flow-line l1">
+                  <div class="saga-flow-indicator" id="saga-dot-1"></div>
+                </div>
+                <!-- Line connecting 2 -> 3 -->
+                <div class="saga-flow-line l2">
+                  <div class="saga-flow-indicator" id="saga-dot-2"></div>
+                </div>
+
+                <div class="saga-service-card" id="saga-card-order">
+                  <div class="saga-service-name">Order Service</div>
+                  <div class="saga-service-status" id="saga-status-order">IDLE</div>
+                </div>
+                
+                <div class="saga-service-card" id="saga-card-inventory">
+                  <div class="saga-service-name">Inventory Service</div>
+                  <div class="saga-service-status" id="saga-status-inventory">IDLE</div>
+                </div>
+                
+                <div class="saga-service-card" id="saga-card-payment">
+                  <div class="saga-service-name">Payment Service</div>
+                  <div class="saga-service-status" id="saga-status-payment">IDLE</div>
+                </div>
+
+              </div>
+
+              <div class="saga-console" id="saga-console-box">
+                <div class="saga-console-line">[System] Click a simulation path to visualize distributed state rollback.</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- AUTOSAR DSL Chapter -->
+          <div id="story-autosar" class="story-content-panel">
+            <div class="story-header">
+              <div class="story-context">Eclipse Plugin DSL & Validation</div>
+              <h2 class="story-title">ARXML Validator DSL</h2>
+              <div class="story-role">Senior Software Engineer</div>
+            </div>
+            <div class="story-metrics-grid">
+              <div class="story-metric-card">
+                <div class="story-metric-val">1000+</div>
+                <div class="story-metric-label">ARXML Validations</div>
+              </div>
+              <div class="story-metric-card">
+                <div class="story-metric-val">50% ↓</div>
+                <div class="story-metric-label">Manual Test Effort</div>
+              </div>
+              <div class="story-metric-card">
+                <div class="story-metric-val">Xtext</div>
+                <div class="story-metric-label">DSL Engine</div>
+              </div>
+              <div class="story-metric-card">
+                <div class="story-metric-val">AUTOSAR</div>
+                <div class="story-metric-label">Meta Model Standard</div>
+              </div>
+            </div>
+            <ul class="story-bullets">
+              <li class="copy-sentence">Maintained an Eclipse plugin RCP and DSL validation tool verifying 1000+ complex ARXML and XSD configurations on local system deployments.</li>
+              <li class="copy-sentence">Applied predefined constraints to check parameter availability, generating automated reports in XML and Microsoft Excel format.</li>
+              <li class="copy-sentence">Created integrated check rules mapping configuration dependencies, which reduced manual auditing cycles by 50% for tool operators.</li>
+            </ul>
+          </div>
+
+          <!-- Data Migration Chapter -->
+          <div id="story-migration" class="story-content-panel">
+            <div class="story-header">
+              <div class="story-context">Enterprise Legacy Data Migration</div>
+              <h2 class="story-title">SharePoint to MongoDB</h2>
+              <div class="story-role">Senior Software Engineer</div>
+            </div>
+            <div class="story-metrics-grid">
+              <div class="story-metric-card">
+                <div class="story-metric-val">2TB+</div>
+                <div class="story-metric-label">Data Migrated</div>
+              </div>
+              <div class="story-metric-card">
+                <div class="story-metric-val">0 ms</div>
+                <div class="story-metric-label">Production Downtime</div>
+              </div>
+              <div class="story-metric-card">
+                <div class="story-metric-val">100%</div>
+                <div class="story-metric-label">Data Integrity</div>
+              </div>
+              <div class="story-metric-card">
+                <div class="story-metric-val">35% ↓</div>
+                <div class="story-metric-label">Query Latency</div>
+              </div>
+            </div>
+            <ul class="story-bullets">
+              <li class="copy-sentence">Engineered a high-performance parallel extraction pipeline in Java, mapping semi-structured SharePoint list nodes into flexible BSON documents.</li>
+              <li class="copy-sentence">Implemented a checkpoint mechanism in the migration logic that logged state changes continuously, supporting robust failures without data loss or partial writes.</li>
+              <li class="copy-sentence">Led the migration of 2TB+ of legacy SharePoint document library data to MongoDB Atlas, minimizing cutover downtime while dropping query processing latency by 35%.</li>
+            </ul>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects Section (Constraint-focused) -->
+  <section id="projects">
+    <div class="container reveal">
+      <div class="section-label">02. Selected Projects</div>
+
+      <!-- Category Filter Bar -->
+      <div class="project-filter-bar">
+        <button class="project-filter-btn active" onclick="filterProjects(this, 'all')">All Projects</button>
+        <button class="project-filter-btn" onclick="filterProjects(this, 'personal')">Personal Projects</button>
+        <button class="project-filter-btn" onclick="filterProjects(this, 'private')">ZF Group (Private)</button>
+      </div>
+      
+      <div class="projects-grid">
+        
+        <!-- Personal Projects -->
+
+        <!-- Lumina Task Orchestrator -->
+        <div class="project-card" data-category="personal">
+          <div class="project-card-header">
+            <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+              <span class="project-tag">Personal</span>
+              <span class="project-tag web">Web</span>
+            </div>
+            <span class="project-arrow">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+              </svg>
+            </span>
+          </div>
+          <h3 class="project-title">Lumina Task Orchestrator</h3>
+          <div class="project-desc copy-sentence">
+            A lightweight workflow execution engine designed to bypass the memory footprint and database polling overhead of heavy tooling. The design constraint centered on avoiding polling overhead; solved by implementing in-memory lock queues and event-driven task distribution via Java 21 virtual threads.
+          </div>
+          <div style="display: flex; gap: 1.25rem; margin: 0.5rem 0; font-size: 0.8rem; flex-wrap: wrap;">
+            <a href="https://github.com/SudegoraAnkit/lumina-task-orchestrator" target="_blank" rel="noopener" style="color: var(--text-muted); display: flex; align-items: center; gap: 0.3rem;" class="nav-link">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+              View Repository
+            </a>
+          </div>
+          <div class="project-tech">
+            <span class="tech-pill">Java 21</span>
+            <span class="tech-pill">Spring Boot</span>
+            <span class="tech-pill">Scheduler API</span>
+            <span class="tech-pill">PostgreSQL</span>
+          </div>
+          
+          <button class="sandbox-trigger-btn" onclick="toggleProjectSandbox(this, 'lumina')">
+            <span>[+] Simulate API Endpoint</span>
+          </button>
+
+          <div class="sandbox-drawer" id="sandbox-lumina">
+            <div class="sandbox-drawer-header">
+              <span>POST /api/v1/workflows/trigger</span>
+              <span class="status-indicator">READY</span>
+            </div>
+            <div class="sandbox-console" id="console-lumina">
+              <span class="terminal-comment">// Click 'Simulate API Endpoint' to verify virtual thread dispatching.</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- HabitEngine -->
+        <div class="project-card" data-category="personal">
+          <div class="project-card-header">
+            <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+              <span class="project-tag">Personal</span>
+              <span class="project-tag mobile">Mobile</span>
+            </div>
+            <span class="project-arrow">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+              </svg>
+            </span>
+          </div>
+          <h3 class="project-title">HabitEngine</h3>
+          <div class="project-desc copy-sentence">
+            An event-driven habit tracking platform handling concurrent write updates and complex streak calculations. The primary constraint was protecting the main transaction base from heavy aggregation writes; mitigated by queuing user check-ins into an async executor buffer that writes updates in micro-batches.
+          </div>
+          <div style="display: flex; gap: 1.25rem; margin: 0.5rem 0; font-size: 0.8rem; flex-wrap: wrap;">
+            <a href="https://github.com/SudegoraAnkit/HabitEngine" target="_blank" rel="noopener" style="color: var(--text-muted); display: flex; align-items: center; gap: 0.3rem;" class="nav-link">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+              View Repository
+            </a>
+          </div>
+          <div class="project-tech">
+            <span class="tech-pill">Java 17</span>
+            <span class="tech-pill">Spring Boot</span>
+            <span class="tech-pill">PostgreSQL</span>
+            <span class="tech-pill">Redis</span>
+            <span class="tech-pill">Docker</span>
+          </div>
+
+          <button class="sandbox-trigger-btn" onclick="toggleProjectSandbox(this, 'habit')">
+            <span>[+] Simulate API Endpoint</span>
+          </button>
+
+          <div class="sandbox-drawer" id="sandbox-habit">
+            <div class="sandbox-drawer-header">
+              <span>POST /api/v1/habits/check-in</span>
+              <span class="status-indicator">READY</span>
+            </div>
+            <div class="sandbox-console" id="console-habit">
+              <span class="terminal-comment">// Click 'Simulate API Endpoint' to run transactional cache checking.</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- KharchaDekh -->
+        <div class="project-card" data-category="personal">
+          <div class="project-card-header">
+            <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+              <span class="project-tag">Personal</span>
+              <span class="project-tag mobile">Mobile</span>
+            </div>
+            <span class="project-arrow">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+              </svg>
+            </span>
+          </div>
+          <h3 class="project-title">KharchaDekh</h3>
+          <div class="project-desc copy-sentence">
+            A privacy-first, 100% offline expense manager application. The key design challenge was securely scanning financial events without using remote cloud parsers; solved by coding a localized regex parser and listener that tokenizes incoming SMS banking logs directly in SQLite.
+          </div>
+          <div style="display: flex; gap: 1.25rem; margin: 0.5rem 0; font-size: 0.8rem; flex-wrap: wrap;">
+            <a href="https://github.com/SudegoraAnkit/KharchaDekh" target="_blank" rel="noopener" style="color: var(--text-muted); display: flex; align-items: center; gap: 0.3rem;" class="nav-link">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+              View Repository
+            </a>
+          </div>
+          <div class="project-tech">
+            <span class="tech-pill">Kotlin</span>
+            <span class="tech-pill">Jetpack Compose</span>
+            <span class="tech-pill">Room DB</span>
+            <span class="tech-pill">Android Jetpack</span>
+          </div>
+
+          <button class="sandbox-trigger-btn" onclick="toggleProjectSandbox(this, 'kharcha')">
+            <span>[+] Simulate Local SMS Parse</span>
+          </button>
+
+          <div class="sandbox-drawer" id="sandbox-kharcha">
+            <div class="sandbox-drawer-header">
+              <span>LOCAL_SMS_BROADCAST_RECEIVER</span>
+              <span class="status-indicator">READY</span>
+            </div>
+            <div class="sandbox-console" id="console-kharcha">
+              <span class="terminal-comment">// Click 'Simulate Local SMS Parse' to watch device-side transactional parsing.</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- GyanYatra -->
+        <div class="project-card" data-category="personal">
+          <div class="project-card-header">
+            <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+              <span class="project-tag">Personal</span>
+              <span class="project-tag web">Web</span>
+              <span class="project-tag ai">AI</span>
+            </div>
+            <span class="project-arrow">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+              </svg>
+            </span>
+          </div>
+          <h3 class="project-title">GyanYatra</h3>
+          <div class="project-desc copy-sentence">
+            An interactive educational learning pipeline with AI assistance. The technical barrier was avoiding high token costs and latency spikes from recursive LLM interactions; solved by designing a local vector context index that queries local storage before invoking the external model.
+          </div>
+          <div style="display: flex; gap: 1.25rem; margin: 0.5rem 0; font-size: 0.8rem; flex-wrap: wrap;">
+            <a href="https://gyan-yatra-seven.vercel.app/" target="_blank" rel="noopener" style="color: var(--accent-blue); display: flex; align-items: center; gap: 0.3rem;">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+              Live App
+            </a>
+            <a href="https://github.com/SudegoraAnkit/GyanYatra" target="_blank" rel="noopener" style="color: var(--text-muted); display: flex; align-items: center; gap: 0.3rem;" class="nav-link">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+              Code & Design Decisions
+            </a>
+          </div>
+          <div class="project-tech">
+            <span class="tech-pill">JavaScript</span>
+            <span class="tech-pill">Spring AI</span>
+            <span class="tech-pill">OpenAI API</span>
+            <span class="tech-pill">SQLite</span>
+          </div>
+
+          <button class="sandbox-trigger-btn" onclick="toggleProjectSandbox(this, 'gyan')">
+            <span>[+] Simulate Prompt Context Injection</span>
+          </button>
+
+          <div class="sandbox-drawer" id="sandbox-gyan">
+            <div class="sandbox-drawer-header">
+              <span>GET /api/v1/learning/path</span>
+              <span class="status-indicator">READY</span>
+            </div>
+            <div class="sandbox-console" id="console-gyan">
+              <span class="terminal-comment">// Click 'Simulate Prompt Context Injection' to inspect local vector similarity filtering.</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- ComplexityAnalyzer -->
+        <div class="project-card" data-category="personal">
+          <div class="project-card-header">
+            <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+              <span class="project-tag">Personal</span>
+              <span class="project-tag">Tool</span>
+            </div>
+            <span class="project-arrow">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+              </svg>
+            </span>
+          </div>
+          <h3 class="project-title">ComplexityAnalyzer</h3>
+          <div class="project-desc copy-sentence">
+            A static complexity scanner built to compute cognitive and cyclomatic complexity directly from Java source code files. Solved recursive AST traversal memory limits by executing custom stack-based depth walkers and caching parsed symbols, protecting CPU cycles under multi-file scans.
+          </div>
+          <div style="display: flex; gap: 1.25rem; margin: 0.5rem 0; font-size: 0.8rem; flex-wrap: wrap;">
+            <a href="https://github.com/SudegoraAnkit/ComplexityAnalyzer" target="_blank" rel="noopener" style="color: var(--text-muted); display: flex; align-items: center; gap: 0.3rem;" class="nav-link">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+              View Repository
+            </a>
+          </div>
+          <div class="project-tech">
+            <span class="tech-pill">Java</span>
+            <span class="tech-pill">JavaParser</span>
+            <span class="tech-pill">AST-Inspection</span>
+            <span class="tech-pill">CLI</span>
+          </div>
+        </div>
+
+        <!-- QR-Code Reader/Generator -->
+        <div class="project-card" data-category="personal">
+          <div class="project-card-header">
+            <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+              <span class="project-tag">Personal</span>
+              <span class="project-tag web">Web</span>
+            </div>
+            <span class="project-arrow">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+              </svg>
+            </span>
+          </div>
+          <h3 class="project-title">QR Code Reader & Generator</h3>
+          <div class="project-desc copy-sentence">
+            A high-throughput Java microservice for generating and decoding QR codes concurrently. Solved server thread starvation constraints by utilizing a bounded executor queue with explicit backpressure reject configurations, processing 500+ requests per second.
+          </div>
+          <div style="display: flex; gap: 1.25rem; margin: 0.5rem 0; font-size: 0.8rem; flex-wrap: wrap;">
+            <a href="https://github.com/SudegoraAnkit/QR-Code-Reader-generator-using-java" target="_blank" rel="noopener" style="color: var(--text-muted); display: flex; align-items: center; gap: 0.3rem;" class="nav-link">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+              View Repository
+            </a>
+          </div>
+          <div class="project-tech">
+            <span class="tech-pill">Java</span>
+            <span class="tech-pill">ZXing</span>
+            <span class="tech-pill">Spring Boot</span>
+            <span class="tech-pill">Multi-threading</span>
+          </div>
+        </div>
+
+
+        <!-- ZF Group Projects -->
+
+        <!-- OverAir-Secure -->
+        <div class="project-card" data-category="private">
+          <div class="project-card-header">
+            <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+              <span class="project-tag private">ZF Group (Private)</span>
+              <span class="project-tag web">Web</span>
+            </div>
+            <span class="project-arrow">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+              </svg>
+            </span>
+          </div>
+          <h3 class="project-title">OverAir-Secure</h3>
+          <div class="project-desc copy-sentence">
+            A transactionally isolated, deterministic orchestration engine designed to maintain absolute transactional safety and cryptographic assurance for millions of concurrent update streams over unstable cellular networks. Prevents mid-stream connection failures from bricking safety-critical vehicle components (ECUs).
+          </div>
+          <div class="project-tech">
+            <span class="tech-pill">Java</span>
+            <span class="tech-pill">Spring Boot</span>
+            <span class="tech-pill">PostgreSQL</span>
+            <span class="tech-pill">Redis</span>
+            <span class="tech-pill">Spring Cloud</span>
+          </div>
+
+          <button class="sandbox-trigger-btn" onclick="toggleProjectSandbox(this, 'overair')">
+            <span>[+] Simulate OTA Rollout</span>
+          </button>
+
+          <div class="sandbox-drawer" id="sandbox-overair">
+            <div class="sandbox-drawer-header">
+              <span>POST /api/v1/ota/rollout</span>
+              <span class="status-indicator">READY</span>
+            </div>
+            <div class="sandbox-console" id="console-overair">
+              <span class="terminal-comment">// Click 'Simulate OTA Rollout' to monitor connection drop & checkpoint recovery.</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- FDK Generator -->
+        <div class="project-card" data-category="private">
+          <div class="project-card-header">
+            <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+              <span class="project-tag private">ZF Group (Private)</span>
+              <span class="project-tag web">Web</span>
+            </div>
+            <span class="project-arrow">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+              </svg>
+            </span>
+          </div>
+          <h3 class="project-title">FDK Generator</h3>
+          <div class="project-desc copy-sentence">
+            Translates legacy embedded C codebase configurations into modern C++ adhering to Service-Oriented Architecture (SOA) and Adaptive AUTOSAR middleware guidelines. Avoids thread safety and manual mapping errors by implementing an automated AST parsing engine.
+          </div>
+          <div class="project-tech">
+            <span class="tech-pill">Python</span>
+            <span class="tech-pill">C</span>
+            <span class="tech-pill">C++</span>
+            <span class="tech-pill">Adaptive AUTOSAR</span>
+            <span class="tech-pill">FastAPI</span>
+            <span class="tech-pill">Tauri</span>
+          </div>
+        </div>
+
+        <!-- Webservices API for Eclipse Plugin based tool -->
+        <div class="project-card" data-category="private">
+          <div class="project-card-header">
+            <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+              <span class="project-tag private">ZF Group (Private)</span>
+              <span class="project-tag web">Web</span>
+            </div>
+            <span class="project-arrow">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+              </svg>
+            </span>
+          </div>
+          <h3 class="project-title">Webservices API</h3>
+          <div class="project-desc copy-sentence">
+            A modern, GUI-based backend API for Eclipse plugin developer tools. Integrates with SharePoint lists and MS-SQL databases, utilizing batch workers and delta change-tracking to synchronize deeply nested configurations with zero manual data entry.
+          </div>
+          <div class="project-tech">
+            <span class="tech-pill">Java</span>
+            <span class="tech-pill">Spring Boot</span>
+            <span class="tech-pill">Spring MVC</span>
+            <span class="tech-pill">MS-SQL</span>
+            <span class="tech-pill">Azure Cloud</span>
+          </div>
+        </div>
+
+        <!-- Telematic Solution for Tool Usage Tracking -->
+        <div class="project-card" data-category="private">
+          <div class="project-card-header">
+            <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+              <span class="project-tag private">ZF Group (Private)</span>
+              <span class="project-tag web">Web</span>
+            </div>
+            <span class="project-arrow">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+              </svg>
+            </span>
+          </div>
+          <h3 class="project-title">Telematics Solution</h3>
+          <div class="project-desc copy-sentence">
+            An enterprise telematic platform designed to track real-time tool usage and provide operational insights to management. Handles large telemetry ingestion streams from active IDE plugins by using asynchronous memory-buffer batching prior to database persistence.
+          </div>
+          <div class="project-tech">
+            <span class="tech-pill">Java</span>
+            <span class="tech-pill">Spring Boot</span>
+            <span class="tech-pill">Spring MVC</span>
+            <span class="tech-pill">MS-SQL</span>
+            <span class="tech-pill">React.js</span>
+          </div>
+        </div>
+
+        <!-- Eclipse Plugin (DSL & RCP) Tool to validate ARXML -->
+        <div class="project-card" data-category="private">
+          <div class="project-card-header">
+            <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+              <span class="project-tag private">ZF Group (Private)</span>
+              <span class="project-tag">Tool</span>
+            </div>
+            <span class="project-arrow">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+              </svg>
+            </span>
+          </div>
+          <h3 class="project-title">ARXML Validator DSL</h3>
+          <div class="project-desc copy-sentence">
+            An Eclipse plugin rich client platform (RCP) and domain-specific language (DSL) validating thousands of ARXML and XSD files. Implements AST semantic verification and custom namespace caching to parallelize parsing on developer stations.
+          </div>
+          <div class="project-tech">
+            <span class="tech-pill">Java</span>
+            <span class="tech-pill">Xtext</span>
+            <span class="tech-pill">Xtend</span>
+            <span class="tech-pill">DSL</span>
+            <span class="tech-pill">AUTOSAR</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Engineering Principles -->
+  <section id="principles">
+    <div class="container reveal">
+      <div class="section-label">03. Engineering Principles</div>
+      
+      <div class="principles-grid">
+        
+        <!-- Principle 1 -->
+        <div class="principle-card">
+          <div class="principle-num">01</div>
+          <div class="principle-title">Instrument before optimizing</div>
+          <p class="principle-desc copy-sentence">
+            Observation first, then targeted change. I make decisions based on metrics and tracer profiles, never by speculating where system bottlenecks live.
+          </p>
+        </div>
+
+        <!-- Principle 2 -->
+        <div class="principle-card">
+          <div class="principle-num">02</div>
+          <div class="principle-title">Design for the operator</div>
+          <p class="principle-desc copy-sentence">
+            A system is only as good as its operability. Observability, structured logging, safe rollback scripts, and simple restart metrics are standard deliverables.
+          </p>
+        </div>
+
+        <!-- Principle 3 -->
+        <div class="principle-card">
+          <div class="principle-num">03</div>
+          <div class="principle-title">Prefer boring solutions</div>
+          <p class="principle-desc copy-sentence">
+            I prioritize mature, robust, boring solutions over hype. I adopt new technologies only when I can describe the exact engineering limit existing stacks cannot resolve.
+          </p>
+        </div>
+
+        <!-- Principle 4 -->
+        <div class="principle-card">
+          <div class="principle-num">04</div>
+          <div class="principle-title">Think in constraints first</div>
+          <p class="principle-desc copy-sentence">
+            Every software design is a compromise between safety, storage, and speed. I start by outlining what can break, what must be consistent, and build from those truths.
+          </p>
+        </div>
+
+        <!-- Principle 5 -->
+        <div class="principle-card">
+          <div class="principle-num">05</div>
+          <div class="principle-title">Pain-driven development</div>
+          <p class="principle-desc copy-sentence">
+            If I do not know the underlying operational pain, I make mistakes. Real-world constraints and system failure points drive my design choices (PDD).
+          </p>
+        </div>
+
+        <!-- Principle 6 -->
+        <div class="principle-card">
+          <div class="principle-num">06</div>
+          <div class="principle-title">Assume external failure</div>
+          <p class="principle-desc copy-sentence">
+            The network is unstable, disks write slowly, and integrations drop offline. I design services assuming every external boundary will fail, configuring circuit breakers and fallbacks from day zero.
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Skills & Stack Section -->
+  <section id="stack">
+    <div class="container reveal">
+      <div class="section-label">04. Engineering Stack</div>
+      
+      <div class="stack-grid">
+        
+        <!-- Core Backend -->
+        <div class="stack-column">
+          <h3>Core Backend</h3>
+          
+          <div class="skill-item">
+            <div class="skill-info">
+              <span class="skill-name">Java 21</span>
+              <span class="skill-percentage">92%</span>
+            </div>
+            <div class="skill-bar-bg">
+              <div class="skill-bar-fill" data-width="92%"></div>
+            </div>
+          </div>
+
+          <div class="skill-item">
+            <div class="skill-info">
+              <span class="skill-name">Spring Boot</span>
+              <span class="skill-percentage">90%</span>
+            </div>
+            <div class="skill-bar-bg">
+              <div class="skill-bar-fill" data-width="90%"></div>
+            </div>
+          </div>
+
+          <div class="skill-item">
+            <div class="skill-info">
+              <span class="skill-name">REST APIs</span>
+              <span class="skill-percentage">88%</span>
+            </div>
+            <div class="skill-bar-bg">
+              <div class="skill-bar-fill" data-width="88%"></div>
+            </div>
+          </div>
+
+          <div class="skill-item">
+            <div class="skill-info">
+              <span class="skill-name">Spring Security</span>
+              <span class="skill-percentage">80%</span>
+            </div>
+            <div class="skill-bar-bg">
+              <div class="skill-bar-fill" data-width="80%"></div>
+            </div>
+          </div>
+
+          <div class="skill-item">
+            <div class="skill-info">
+              <span class="skill-name">Multi-threading</span>
+              <span class="skill-percentage">78%</span>
+            </div>
+            <div class="skill-bar-bg">
+              <div class="skill-bar-fill" data-width="78%"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Data & Cloud -->
+        <div class="stack-column">
+          <h3>Data & Cloud</h3>
+          
+          <div class="skill-item">
+            <div class="skill-info">
+              <span class="skill-name">MongoDB Atlas</span>
+              <span class="skill-percentage">82%</span>
+            </div>
+            <div class="skill-bar-bg">
+              <div class="skill-bar-fill" data-width="82%"></div>
+            </div>
+          </div>
+
+          <div class="skill-item">
+            <div class="skill-info">
+              <span class="skill-name">MSSQL</span>
+              <span class="skill-percentage">75%</span>
+            </div>
+            <div class="skill-bar-bg">
+              <div class="skill-bar-fill" data-width="75%"></div>
+            </div>
+          </div>
+
+          <div class="skill-item">
+            <div class="skill-info">
+              <span class="skill-name">Docker</span>
+              <span class="skill-percentage">72%</span>
+            </div>
+            <div class="skill-bar-bg">
+              <div class="skill-bar-fill" data-width="72%"></div>
+            </div>
+          </div>
+
+          <div class="skill-item">
+            <div class="skill-info">
+              <span class="skill-name">Azure</span>
+              <span class="skill-percentage">70%</span>
+            </div>
+            <div class="skill-bar-bg">
+              <div class="skill-bar-fill" data-width="70%"></div>
+            </div>
+          </div>
+
+          <div class="skill-item">
+            <div class="skill-info">
+              <span class="skill-name">Redis</span>
+              <span class="skill-percentage">65%</span>
+            </div>
+            <div class="skill-bar-bg">
+              <div class="skill-bar-fill" data-width="65%"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Learning Now -->
+        <div class="stack-column learning-col">
+          <h3>Learning Now</h3>
+          
+          <div class="skill-item">
+            <div class="skill-info">
+              <span class="skill-name">WebFlux</span>
+              <span class="skill-percentage">45%</span>
+            </div>
+            <div class="skill-bar-bg">
+              <div class="skill-bar-fill" data-width="45%"></div>
+            </div>
+          </div>
+
+          <div class="skill-item">
+            <div class="skill-info">
+              <span class="skill-name">Kafka</span>
+              <span class="skill-percentage">40%</span>
+            </div>
+            <div class="skill-bar-bg">
+              <div class="skill-bar-fill" data-width="40%"></div>
+            </div>
+          </div>
+
+          <div class="skill-item">
+            <div class="skill-info">
+              <span class="skill-name">Kubernetes</span>
+              <span class="skill-percentage">38%</span>
+            </div>
+            <div class="skill-bar-bg">
+              <div class="skill-bar-fill" data-width="38%"></div>
+            </div>
+          </div>
+
+          <div class="skill-item">
+            <div class="skill-info">
+              <span class="skill-name">gRPC</span>
+              <span class="skill-percentage">35%</span>
+            </div>
+            <div class="skill-bar-bg">
+              <div class="skill-bar-fill" data-width="35%"></div>
+            </div>
+          </div>
+
+          <div class="skill-item">
+            <div class="skill-info">
+              <span class="skill-name">Spring AI</span>
+              <span class="skill-percentage">30%</span>
+            </div>
+            <div class="skill-bar-bg">
+              <div class="skill-bar-fill" data-width="30%"></div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact" style="border-bottom: none;">
+    <div class="container reveal">
+      <div class="section-label">05. Contact</div>
+      
+      <div class="contact-wrapper">
+        <p class="contact-statement copy-sentence">
+          I am interested in complex backend challenges, distributed systems problems, and AI-integrated products. Not looking for basic CRUD applications.
+        </p>
+        
+        <div class="contact-links">
+          <a href="mailto:ankitrai.pro@gmail.com" class="btn btn-primary contact-btn">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+              <polyline points="22,6 12,13 2,6"></polyline>
+            </svg>
+            ankitrai.pro@gmail.com
+          </a>
+          <a href="./Ankit_Rai_Resume.pdf" download="Ankit_Rai_Resume.pdf" class="btn contact-btn" style="border-color: var(--accent-teal); color: var(--accent-teal);">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+            Download Resume
+          </a>
+          <a href="https://linkedin.com/in/ankitsudegora" target="_blank" rel="noopener" class="btn contact-btn">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+              <rect x="2" y="9" width="4" height="12"></rect>
+              <circle cx="4" cy="4" r="2"></circle>
+            </svg>
+            LinkedIn
+          </a>
+          <a href="https://github.com/SudegoraAnkit" target="_blank" rel="noopener" class="btn contact-btn">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+            </svg>
+            GitHub
+          </a>
+          <a href="https://www.skills.google/public_profiles/21ca54db-5fc1-403b-9780-7fd71507e3bf" target="_blank" rel="noopener" class="btn contact-btn">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="7"></circle><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"></polyline></svg>
+            Google Skills
+          </a>
+          <a href="https://g.dev/ankitsudegora" target="_blank" rel="noopener" class="btn contact-btn">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
+            Google Dev
+          </a>
+          <a href="https://leetcode.com/ankitraidev/" target="_blank" rel="noopener" class="btn contact-btn">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19h16a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2z"></path><path d="M8 9h8"></path><path d="M8 13h6"></path></svg>
+            LeetCode
+          </a>
+          <a href="https://www.geeksforgeeks.org/user/ankitsudegora/" target="_blank" rel="noopener" class="btn contact-btn">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="17 11 22 16 17 21"></polyline><polyline points="7 11 2 16 7 21"></polyline><polyline points="12 4 12 20"></polyline></svg>
+            GeeksforGeeks
+          </a>
+          <a href="https://x.com/sudegora_ankit" target="_blank" rel="noopener" class="btn contact-btn">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path>
+            </svg>
+            Twitter / X
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container footer-wrapper">
+      <div>&copy; 2026 Ankit Rai. All rights reserved. Built with boring web tech (pure HTML/CSS/JS).</div>
+      <div class="footer-meta">
+        <div>Location: Hyderabad, India</div>
+        <div>System time: <span id="footer-time"></span></div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Web Interactions Script -->
+  <script>
+    // System time display
+    function updateSystemTime() {
+      const options = { timeZone: 'Asia/Kolkata', hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false };
+      const timeStr = new Intl.DateTimeFormat('en-US', options).format(new Date());
+      document.getElementById('footer-time').textContent = timeStr + ' IST';
+    }
+    setInterval(updateSystemTime, 1000);
+    updateSystemTime();
+
+    // Mobile Navigation Toggle
+    function toggleMobileNav() {
+      const nav = document.getElementById('main-nav');
+      if (nav.style.display === 'flex') {
+        nav.style.display = 'none';
+      } else {
+        nav.style.display = 'flex';
+        nav.style.flexDirection = 'column';
+        nav.style.position = 'absolute';
+        nav.style.top = '4.5rem';
+        nav.style.left = '0';
+        nav.style.right = '0';
+        nav.style.backgroundColor = 'rgba(11, 12, 15, 0.95)';
+        nav.style.padding = '2rem';
+        nav.style.borderBottom = '1px solid var(--border-color)';
+        nav.style.gap = '1.5rem';
+      }
+    }
+
+    // Story Switcher
+    function switchStoryTab(event, tabId) {
+      // Deactivate all selector buttons
+      const buttons = document.querySelectorAll('.story-selector-btn');
+      buttons.forEach(btn => btn.classList.remove('active'));
+      
+      // Deactivate all panels
+      const panels = document.querySelectorAll('.story-content-panel');
+      panels.forEach(p => p.classList.remove('active'));
+      
+      // Activate selected
+      event.target.classList.add('active');
+      document.getElementById('story-' + tabId).classList.add('active');
+    }
+
+    // Terminal Interactive logic
+    const jsonProfile = `{
+  "name": "Ankit Rai",
+  "role": "Senior Systems Engineer",
+  "location": "Hyderabad, India",
+  "experience": "4.6 years",
+  "stack": ["Java", "Spring Boot", "SQL/NoSQL", "Docker"],
+  "approach": "boring by design",
+  "status": true /* open to collab */
+}`;
+
+    let charIdx = 0;
+    const jsonWriter = document.getElementById('json-writer');
+    
+    // Type out JSON on boot
+    function typeJSON() {
+      if (charIdx < jsonProfile.length) {
+        let char = jsonProfile.charAt(charIdx);
+        // Add syntax styling on the fly by replacing with formatted content
+        if (char === '{' || char === '}') {
+          jsonWriter.innerHTML += `<span class="json-bool">${char}</span>`;
+        } else if (char === '"') {
+          // simple quote coloring logic
+          let nextQuoteIdx = jsonProfile.indexOf('"', charIdx + 1);
+          let rawString = jsonProfile.substring(charIdx, nextQuoteIdx + 1);
+          if (jsonProfile.charAt(nextQuoteIdx + 1) === ':') {
+            jsonWriter.innerHTML += `<span class="json-key">${rawString}</span>`;
+          } else {
+            jsonWriter.innerHTML += `<span class="json-string">${rawString}</span>`;
+          }
+          charIdx = nextQuoteIdx;
+        } else if (char === '/' && jsonProfile.charAt(charIdx + 1) === '*') {
+          let commentClose = jsonProfile.indexOf('*/', charIdx);
+          let comment = jsonProfile.substring(charIdx, commentClose + 2);
+          jsonWriter.innerHTML += `<span class="terminal-comment">${comment}</span>`;
+          charIdx = commentClose + 1;
+        } else if (char === 't' && jsonProfile.substring(charIdx, charIdx+4) === 'true') {
+          jsonWriter.innerHTML += `<span class="json-bool">true</span>`;
+          charIdx += 3;
+        } else {
+          jsonWriter.innerHTML += char;
+        }
+        charIdx++;
+        setTimeout(typeJSON, 3);
+      } else {
+        // Append welcoming tip
+        jsonWriter.innerHTML += `\n\n<span class="terminal-comment">// Welcome. Type 'help' in the prompt below to run live commands.</span>`;
+        // Scroll terminal to bottom
+        const body = document.querySelector('.terminal-body');
+        body.scrollTop = body.scrollHeight;
+      }
+    }
+    
+    // Boot sequence on load
+    setTimeout(typeJSON, 500);
+
+    // Switch Terminal tabs
+    function switchTerminalTab(tabId) {
+      document.getElementById('tab-json').classList.remove('active');
+      document.getElementById('tab-metrics').classList.remove('active');
+      document.getElementById('content-json').classList.remove('active');
+      document.getElementById('content-metrics').classList.remove('active');
+
+      document.getElementById('tab-' + tabId).classList.add('active');
+      document.getElementById('content-' + tabId).classList.add('active');
+    }
+
+    // Telemetry Generator
+    let metricsInterval;
+    function startTelemetryUpdates() {
+      const heapVal = document.getElementById('metric-heap');
+      const heapBar = document.getElementById('bar-heap');
+      const threadsVal = document.getElementById('metric-threads');
+      const threadsBar = document.getElementById('bar-threads');
+      const dbVal = document.getElementById('metric-db');
+      const dbBar = document.getElementById('bar-db');
+      const logsBox = document.getElementById('metrics-logs-panel');
+
+      const serviceNames = ['zf.gateway.RoutingFilter', 'zf.user.SecurityFilter', 'zf.ecu.TelemetryEngine', 'zf.db.HikariCPPool', 'zf.cache.RedisNode'];
+      const actions = [
+        'Route match found for /api/v1/telemetry',
+        'Validated stateless session JWT token',
+        'Pushed ECU metrics batch to queue',
+        'Released DB connection back to pool',
+        'Acquired connection for read operation',
+        'Redis cache hit for key: zf:configs:ecu:active'
+      ];
+
+      metricsInterval = setInterval(() => {
+        // Randomize heap
+        let heapCurrent = Math.floor(250 + Math.random() * 200);
+        heapVal.textContent = `${heapCurrent} MB / 1024 MB`;
+        heapBar.style.width = `${(heapCurrent / 1024) * 100}%`;
+
+        // Randomize threads
+        let vThreads = Math.floor(400 + Math.random() * 200);
+        threadsVal.textContent = `14 / ${vThreads} (Virt)`;
+        threadsBar.style.width = `${(vThreads / 800) * 100}%`;
+
+        // DB connections
+        let dbActive = Math.floor(2 + Math.random() * 6);
+        dbVal.textContent = `${dbActive} / 10 Active`;
+        dbBar.style.width = `${dbActive * 10}%`;
+
+        // Append log line
+        let service = serviceNames[Math.floor(Math.random() * serviceNames.length)];
+        let action = actions[Math.floor(Math.random() * actions.length)];
+        let traceId = Math.random().toString(16).substring(2, 8);
+        let timestamp = new Date().toISOString().substring(11, 19);
+
+        let isWarn = Math.random() > 0.93;
+        let logClass = isWarn ? 'warn' : 'info';
+        let logPrefix = isWarn ? 'WARN' : 'INFO';
+        let logText = `[${timestamp}] ${logPrefix} [traceId: ${traceId}] ${service} : ${action}`;
+
+        const newline = document.createElement('div');
+        newline.className = `log-line ${logClass}`;
+        newline.textContent = logText;
+        logsBox.appendChild(newline);
+        logsBox.scrollTop = logsBox.scrollHeight;
+
+        // Keep last 30 logs
+        while (logsBox.children.length > 30) {
+          logsBox.removeChild(logsBox.firstChild);
+        }
+
+      }, 1000);
+    }
+    startTelemetryUpdates();
+
+    // Command line handler
+    const cliHistory = [];
+    let historyIdx = -1;
+
+    function handleTerminalCommand(e) {
+      e.preventDefault();
+      const cli = document.getElementById('terminal-cli');
+      const cmd = cli.value.trim().toLowerCase();
+      if (!cmd) return;
+
+      // Ensure console tab is active when running commands
+      switchTerminalTab('json');
+
+      cliHistory.push(cmd);
+      historyIdx = cliHistory.length;
+      cli.value = '';
+
+      // Print prompt command input
+      const jsonContent = document.getElementById('json-writer');
+      jsonContent.innerHTML += `\n<span class="terminal-prompt">guest@ankitrai:~$</span> ${cmd}\n`;
+
+      let output = '';
+      if (cmd === 'help') {
+        output = `Available commands:\n` +
+                 `  help           - Show this command list\n` +
+                 `  system         - Query JVM heap memory, virtual thread loads, & actuator values\n` +
+                 `  logs           - Stream real-time microservice backend log messages\n` +
+                 `  ping           - Measure socket latency to distributed infrastructure nodes\n` +
+                 `  chaos          - Inject simulated connection failure event and watch self-healing\n` +
+                 `  shake          - Trigger seismic acceleration viewport shaking earthquake\n` +
+                 `  tear           - Execute structural shear viewport tearing\n` +
+                 `  matrix         - Stream falling green rain machine code overlay\n` +
+                 `  glitch         - Execute cyberpunk style layout text glitch shift\n` +
+                 `  scan           - Sweep green laser scanner line sweep overlay\n` +
+                 `  theme <name>   - Set color theme (default, matrix, cyberpunk, nord, light)\n` +
+                 `  clear          - Clear this console session buffer\n`;
+      } else if (cmd === 'system') {
+        let vThreads = Math.floor(400 + Math.random() * 150);
+        let heapVal = Math.floor(280 + Math.random() * 100);
+        output = `\n<span class="json-key">[SYSTEM TELEMETRY STATE]</span>\n` +
+                 `------------------------------------------------\n` +
+                 `JVM Heap Size  : [██████░░░░░░░░░░░░] ${heapVal} MB / 1024 MB\n` +
+                 `Platform Threads: 14 active\n` +
+                 `Virtual Threads : ${vThreads} spawned (Java 21 scheduler active)\n` +
+                 `HikariCP Pool   : 4 active / 6 idle connections\n` +
+                 `Circuit Breaker : <span class="json-string">CLOSED</span> (Resilience4j - Healthy)\n` +
+                 `Active Profile  : prod-cloud-hyderabad\n`;
+      } else if (cmd === 'ping') {
+        output = `\nPinging distributed clusters...\n` +
+                 `  postgres.db.prod.internal   -> 1.15ms (<span class="json-string">OK</span>)\n` +
+                 `  redis.cache.prod.internal  -> 0.38ms (<span class="json-string">OK</span>)\n` +
+                 `  kafka.broker.prod.internal  -> 2.40ms (<span class="json-string">OK</span>)\n` +
+                 `  azure.india-south.gateway   -> 8.92ms (<span class="json-string">OK</span>)\n`;
+      } else if (cmd === 'logs') {
+        output = `\n<span class="json-key">Tailing microservices log output...</span>\n`;
+        let count = 0;
+        let streamInterval = setInterval(() => {
+          let traceId = Math.random().toString(16).substring(2, 8);
+          let timestamp = new Date().toISOString().substring(11, 19);
+          let logs = [
+            `[${timestamp}] INFO [trId-${traceId}] zf.gateway.Security    : Token auth successful`,
+            `[${timestamp}] INFO [trId-${traceId}] zf.catalog.ReadService : Cached query returned (2ms)`,
+            `[${timestamp}] INFO [trId-${traceId}] zf.order.WriteService   : Transaction committed successfully`,
+          ];
+          jsonContent.innerHTML += `${logs[count % logs.length]}\n`;
+          const body = document.querySelector('.terminal-body');
+          body.scrollTop = body.scrollHeight;
+          count++;
+          if (count >= 8) clearInterval(streamInterval);
+        }, 150);
+      } else if (cmd === 'chaos') {
+        output = `\n<span class="json-key">Tailing simulated Chaos Monkey failure event...</span>\n`;
+        let count = 0;
+        let streamInterval = setInterval(() => {
+          let traceId = Math.random().toString(16).substring(2, 8);
+          let timestamp = new Date().toISOString().substring(11, 19);
+          let logs = [
+            `[${timestamp}] <span class="log-line warn">WARN [trId-${traceId}] monkey.chaos.network  : Injecting packet loss (40% drops)</span>`,
+            `[${timestamp}] <span class="log-line warn">WARN [trId-${traceId}] monkey.chaos.network  : Gateway link degraded. Latency: 1240ms</span>`,
+            `[${timestamp}] <span class="log-line error">ERROR [trId-${traceId}] zf.order.BillingClient : Connection reset by peer (Read timeout)</span>`,
+            `[${timestamp}] INFO [trId-${traceId}] res4j.cb.BillingCB        : CircuitBreaker state transition: CLOSED -> OPEN (Failure rate: 100% >= 50%)`,
+            `[${timestamp}] INFO [trId-${traceId}] zf.order.BillingClient : Executing fallback strategy (Queuing transaction locally)...`,
+            `[${timestamp}] INFO [trId-${traceId}] monkey.chaos.network  : Recovery command received. Packet loss reset to 0%.`,
+            `[${timestamp}] INFO [trId-${traceId}] res4j.cb.BillingCB        : CircuitBreaker state transition: OPEN -> HALF_OPEN`,
+            `[${timestamp}] INFO [trId-${traceId}] zf.order.BillingClient : Flushing local transaction cache to billing service (Success)...`,
+            `[${timestamp}] INFO [trId-${traceId}] res4j.cb.BillingCB        : CircuitBreaker state transition: HALF_OPEN -> CLOSED (Success rate: 100%)`
+          ];
+          jsonContent.innerHTML += `${logs[count % logs.length]}\n`;
+          const body = document.querySelector('.terminal-body');
+          body.scrollTop = body.scrollHeight;
+          count++;
+          if (count >= logs.length) clearInterval(streamInterval);
+        }, 300);
+      } else if (cmd === 'shake' || cmd === 'sake') {
+        output = `\n<span class="log-line warn">[SYSTEM WARNING] Injecting seismic acceleration events... Shaking viewport for 2000ms.</span>\n`;
+        document.body.classList.add('page-shake');
+        setTimeout(() => {
+          document.body.classList.remove('page-shake');
+        }, 2000);
+      } else if (cmd === 'tear') {
+        output = `\n<span class="log-line error">[CRITICAL ERROR] Screen shear threshold exceeded. Tearing viewport layout...</span>\n`;
+        setTimeout(() => {
+          triggerPageTear();
+        }, 500);
+      } else if (cmd === 'matrix') {
+        output = `\n<span class="log-line info">[ACCESS GRANTED] Activating neural mainframe overlay... Streaming falling machine code.</span>\n`;
+        setTimeout(() => {
+          triggerMatrixRain();
+        }, 500);
+      } else if (cmd.startsWith('theme')) {
+        const parts = cmd.split(' ');
+        const themeName = parts.length > 1 ? parts[1] : '';
+        const validThemes = ['default', 'matrix', 'cyberpunk', 'nord', 'light'];
+        if (!themeName) {
+          output = `\nUsage: theme &lt;name&gt;. Available themes: default, matrix, cyberpunk, nord, light\n`;
+        } else if (validThemes.includes(themeName)) {
+          setTheme(themeName);
+          output = `\nTheme set to <span class="json-string">${themeName}</span> successfully.\n`;
+        } else {
+          output = `\nTheme <span class="log-line error">'${themeName}'</span> not found. Available themes: default, matrix, cyberpunk, nord, light\n`;
+        }
+      } else if (cmd === 'glitch') {
+        output = `\n<span class="log-line warn">[SYSTEM WARNING] Injecting layout signal distortion... Glitching viewport for 1500ms.</span>\n`;
+        document.body.classList.add('page-glitch');
+        setTimeout(() => {
+          document.body.classList.remove('page-glitch');
+        }, 1500);
+      } else if (cmd === 'scan') {
+        output = `\n<span class="log-line info">[SYSTEM INFO] Initiating green laser surface scan sweep...</span>\n`;
+        const scanner = document.createElement('div');
+        scanner.className = 'laser-scan-line';
+        document.body.appendChild(scanner);
+        setTimeout(() => {
+          scanner.remove();
+        }, 2200);
+      } else if (cmd === 'clear') {
+        jsonContent.innerHTML = `<span class="terminal-comment">// Console buffer cleared. Type 'help' to list available system calls.</span>`;
+      } else {
+        output = `bash: command not found: ${cmd}. Type 'help' for options.\n`;
+      }
+
+      if (output) {
+        jsonContent.innerHTML += output;
+      }
+
+      // Keep scroll anchored to bottom
+      const body = document.querySelector('.terminal-body');
+      body.scrollTop = body.scrollHeight;
+    }
+
+    function triggerPageTear() {
+      const leftHalf = document.createElement('div');
+      const rightHalf = document.createElement('div');
+      const style = `
+        position: fixed;
+        top: 0;
+        width: 100vw;
+        height: 100vh;
+        background: ${getComputedStyle(document.body).backgroundColor || '#0b0c0f'};
+        z-index: 99999;
+        pointer-events: none;
+        overflow: hidden;
+        transition: transform 1.5s cubic-bezier(0.15, 0.85, 0.3, 1), opacity 1.5s ease;
+      `;
+
+      leftHalf.style.cssText = style + 'left: 0; clip-path: polygon(0 0, 52% 0, 48% 100%, 0 100%);';
+      rightHalf.style.cssText = style + 'left: 0; clip-path: polygon(52% 0, 100% 0, 100% 100%, 48% 100%);';
+
+      leftHalf.innerHTML = `<div style="position: absolute; width: 100vw; height: 100vh; pointer-events: none;">${document.body.innerHTML}</div>`;
+      rightHalf.innerHTML = `<div style="position: absolute; width: 100vw; height: 100vh; pointer-events: none;">${document.body.innerHTML}</div>`;
+
+      const originalScrollY = window.scrollY;
+      leftHalf.firstChild.style.top = `-${originalScrollY}px`;
+      rightHalf.firstChild.style.top = `-${originalScrollY}px`;
+
+      document.body.appendChild(leftHalf);
+      document.body.appendChild(rightHalf);
+
+      const children = Array.from(document.body.children).filter(el => el !== leftHalf && el !== rightHalf);
+      children.forEach(el => el.style.visibility = 'hidden');
+
+      requestAnimationFrame(() => {
+        leftHalf.style.transform = 'translate(-25%, -15%) rotate(-6deg)';
+        leftHalf.style.opacity = '0';
+        rightHalf.style.transform = 'translate(25%, 15%) rotate(6deg)';
+        rightHalf.style.opacity = '0';
+      });
+
+      setTimeout(() => {
+        leftHalf.remove();
+        rightHalf.remove();
+        children.forEach(el => el.style.visibility = 'visible');
+      }, 1500);
+    }
+
+    function triggerMatrixRain() {
+      const canvas = document.createElement('canvas');
+      canvas.style.cssText = 'position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: 99999; pointer-events: none; background: rgba(11, 12, 15, 0.9); transition: opacity 1s ease;';
+      document.body.appendChild(canvas);
+      
+      const ctx = canvas.getContext('2d');
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+      
+      const columns = Math.floor(canvas.width / 20) + 1;
+      const ypos = Array(columns).fill(0);
+      
+      const interval = setInterval(() => {
+        ctx.fillStyle = 'rgba(11, 12, 15, 0.05)';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        
+        ctx.fillStyle = '#0f0';
+        ctx.font = '15px monospace';
+        
+        ypos.forEach((y, ind) => {
+          const text = String.fromCharCode(Math.random() * 128);
+          const x = ind * 20;
+          ctx.fillText(text, x, y);
+          if (y > 100 + Math.random() * 10000) ypos[ind] = 0;
+          else ypos[ind] = y + 20;
+        });
+      }, 33);
+      
+      setTimeout(() => {
+        canvas.style.opacity = '0';
+        setTimeout(() => {
+          clearInterval(interval);
+          canvas.remove();
+        }, 1000);
+      }, 3000);
+    }
+
+    // Saga Simulation script
+    let sagaRunning = false;
+    function runSagaSimulation(simulateSuccess) {
+      if (sagaRunning) return;
+      sagaRunning = true;
+
+      // Lock buttons
+      document.getElementById('saga-success-btn').disabled = true;
+      document.getElementById('saga-fail-btn').disabled = true;
+
+      const cardOrder = document.getElementById('saga-card-order');
+      const cardInventory = document.getElementById('saga-card-inventory');
+      const cardPayment = document.getElementById('saga-card-payment');
+
+      const statusOrder = document.getElementById('saga-status-order');
+      const statusInventory = document.getElementById('saga-status-inventory');
+      const statusPayment = document.getElementById('saga-status-payment');
+
+      const dot1 = document.getElementById('saga-dot-1');
+      const dot2 = document.getElementById('saga-dot-2');
+
+      const consoleBox = document.getElementById('saga-console-box');
+      consoleBox.innerHTML = '';
+
+      function log(text, type='') {
+        const line = document.createElement('div');
+        line.className = `saga-console-line ${type}`;
+        line.textContent = `[SagaOrchestrator] ${text}`;
+        consoleBox.appendChild(line);
+        consoleBox.scrollTop = consoleBox.scrollHeight;
+      }
+
+      // Step 1: Order creation
+      log('Initiating Saga transaction TX-2094...', 'action');
+      cardOrder.className = 'saga-service-card active';
+      statusOrder.textContent = 'PENDING';
+      statusOrder.className = 'saga-service-status pending';
+
+      setTimeout(() => {
+        log('Order created in PENDING state.', 'success');
+        cardOrder.className = 'saga-service-card success';
+        statusOrder.textContent = 'CREATED';
+        statusOrder.className = 'saga-service-status ok';
+
+        // Animate line 1
+        dot1.style.opacity = 1;
+        dot1.style.transition = 'left 1s linear';
+        dot1.style.left = '100%';
+
+        setTimeout(() => {
+          // Step 2: Inventory reservation
+          log('Invoking Inventory Service: reserving 1x item...', 'action');
+          cardInventory.className = 'saga-service-card active';
+          statusInventory.textContent = 'PENDING';
+          statusInventory.className = 'saga-service-status pending';
+
+          setTimeout(() => {
+            log('Inventory stock reserved successfully.', 'success');
+            cardInventory.className = 'saga-service-card success';
+            statusInventory.textContent = 'RESERVED';
+            statusInventory.className = 'saga-service-status ok';
+
+            // Animate line 2
+            dot2.style.opacity = 1;
+            dot2.style.transition = 'left 1s linear';
+            dot2.style.left = '100%';
+
+            setTimeout(() => {
+              // Step 3: Payment
+              log('Invoking Payment Service: charging $2,400.00...', 'action');
+              cardPayment.className = 'saga-service-card active';
+              statusPayment.textContent = 'PENDING';
+              statusPayment.className = 'saga-service-status pending';
+
+              setTimeout(() => {
+                if (simulateSuccess) {
+                  log('Payment received. Settlement completed.', 'success');
+                  cardPayment.className = 'saga-service-card success';
+                  statusPayment.textContent = 'PAID';
+                  statusPayment.className = 'saga-service-status ok';
+                  
+                  setTimeout(() => {
+                    log('Saga transaction TX-2094 finalized successfully.', 'success');
+                    resetSagaSimulationState(true);
+                  }, 1000);
+                } else {
+                  // Rollback sequence
+                  log('Payment failed! Reason: Insufficient funds.', 'fail');
+                  cardPayment.className = 'saga-service-card failed';
+                  statusPayment.textContent = 'FAILED';
+                  statusPayment.className = 'saga-service-status err';
+
+                  setTimeout(() => {
+                    log('Beginning compensation logic to roll back state...', 'compensate');
+                    
+                    // Reverse dot 2 animation
+                    dot2.style.transition = 'left 0.8s linear';
+                    dot2.style.left = '0%';
+                    dot2.style.backgroundColor = 'var(--accent-amber)';
+
+                    setTimeout(() => {
+                      log('Compensating Inventory Service: releasing stock item...', 'compensate');
+                      cardInventory.className = 'saga-service-card compensated';
+                      statusInventory.textContent = 'RELEASED';
+                      statusInventory.className = 'saga-service-status reversed';
+
+                      // Reverse dot 1 animation
+                      dot1.style.transition = 'left 0.8s linear';
+                      dot1.style.left = '0%';
+                      dot1.style.backgroundColor = 'var(--accent-amber)';
+
+                      setTimeout(() => {
+                        log('Compensating Order Service: marking order CANCELLED...', 'compensate');
+                        cardOrder.className = 'saga-service-card compensated';
+                        statusOrder.textContent = 'CANCELLED';
+                        statusOrder.className = 'saga-service-status reversed';
+
+                        setTimeout(() => {
+                          log('All compensating workflows processed. Consistent distributed state reached.', 'compensate');
+                          resetSagaSimulationState(false);
+                        }, 1200);
+                      }, 1000);
+                    }, 1000);
+                  }, 1200);
+                }
+              }, 1200);
+            }, 1000);
+          }, 1200);
+        }, 1000);
+      }, 1200);
+    }
+
+    function resetSagaSimulationState(success) {
+      sagaRunning = false;
+      document.getElementById('saga-success-btn').disabled = false;
+      document.getElementById('saga-fail-btn').disabled = false;
+
+      const dot1 = document.getElementById('saga-dot-1');
+      const dot2 = document.getElementById('saga-dot-2');
+
+      // Reset dot transitions and colors in background after a brief delay
+      setTimeout(() => {
+        if (!sagaRunning) {
+          dot1.style.transition = 'none';
+          dot2.style.transition = 'none';
+          dot1.style.left = '0%';
+          dot2.style.left = '0%';
+          dot1.style.opacity = 0;
+          dot2.style.opacity = 0;
+          dot1.style.backgroundColor = 'var(--accent-blue)';
+          dot2.style.backgroundColor = 'var(--accent-blue)';
+        }
+      }, 3000);
+    }
+
+    // Filter projects by category
+    function filterProjects(btn, category) {
+      // Remove active class from all filter buttons
+      document.querySelectorAll('.project-filter-btn').forEach(b => {
+        b.classList.remove('active');
+      });
+      // Add active class to clicked button
+      btn.classList.add('active');
+
+      // Filter cards
+      document.querySelectorAll('.project-card').forEach(card => {
+        const cardCategory = card.getAttribute('data-category');
+        if (category === 'all' || cardCategory === category) {
+          card.classList.remove('hidden');
+        } else {
+          card.classList.add('hidden');
+        }
+      });
+    }
+
+    // Projects API Sandbox execution simulator
+    function toggleProjectSandbox(btn, projectId) {
+      const drawer = document.getElementById('sandbox-' + projectId);
+      const isOpening = !drawer.classList.contains('open');
+      
+      // Close all other drawers first
+      document.querySelectorAll('.sandbox-drawer').forEach(d => {
+        d.classList.remove('open');
+      });
+      document.querySelectorAll('.sandbox-trigger-btn').forEach(b => {
+        const titleEl = b.parentNode.querySelector('.project-title');
+        const title = titleEl ? titleEl.textContent.trim() : '';
+        if (title === 'KharchaDekh') {
+          b.innerHTML = '<span>[+] Simulate Local SMS Parse</span>';
+        } else if (title === 'GyanYatra') {
+          b.innerHTML = '<span>[+] Simulate Prompt Context Injection</span>';
+        } else if (title === 'OverAir-Secure') {
+          b.innerHTML = '<span>[+] Simulate OTA Rollout</span>';
+        } else {
+          b.innerHTML = '<span>[+] Simulate API Endpoint</span>';
+        }
+      });
+
+      if (isOpening) {
+        drawer.classList.add('open');
+        btn.innerHTML = '<span>[-] Close Sandbox</span>';
+        runSandboxConsole(projectId);
+      }
+    }
+
+    function runSandboxConsole(projectId) {
+      const consoleBox = document.getElementById('console-' + projectId);
+      consoleBox.innerHTML = '';
+
+      function printLine(text, delay) {
+        return new Promise(resolve => {
+          setTimeout(() => {
+            const span = document.createElement('div');
+            span.innerHTML = text;
+            consoleBox.appendChild(span);
+            consoleBox.scrollTop = consoleBox.scrollHeight;
+            resolve();
+          }, delay);
+        });
+      }
+
+      if (projectId === 'lumina') {
+        printLine(`<span class="json-key">--> POST /api/v1/workflows/trigger</span>`, 100)
+          .then(() => printLine(`  [Security] Authenticated key 'client-app-1' via Spring Security Filter Chain`, 300))
+          .then(() => printLine(`  [Orchestrator] Lock checked for WorkflowID '8a2c-f90b' (No concurrent run lock found)`, 400))
+          .then(() => printLine(`  [Orchestrator] Scheduling tasks. Spawning Java virtual threads...`, 500))
+          .then(() => printLine(`  [virtual-thread-#209] Task: 'FetchData' -> Querying Postgres (Completed in 2ms)`, 400))
+          .then(() => printLine(`  [virtual-thread-#210] Task: 'EmitECUEvent' -> Socket write to target ECU (Completed in 1ms)`, 450))
+          .then(() => printLine(`  [Orchestrator] All workflow nodes finished. Thread teardown complete.`, 300))
+          .then(() => printLine(`<span class="json-string"><-- STATUS 200 OK (Workflow executed in 7ms)</span>`, 200));
+      } else if (projectId === 'habit') {
+        printLine(`<span class="json-key">--> POST /api/v1/habits/104/check-in</span>`, 100)
+          .then(() => printLine(`  [Security] Validated session JWT (userId: 982)`, 300))
+          .then(() => printLine(`  [Cache] Redis read for key 'user:982:habits:104' -> HIT. Fetching cache values...`, 300))
+          .then(() => printLine(`  [Resilience4j] CircuitBreaker 'habit-db-circuit' is CLOSED (Healthy)`, 300))
+          .then(() => printLine(`  [Queue] Pushing async streak rollup metrics to WriteQueue`, 400))
+          .then(() => printLine(`  [Database] Batch-processor thread flushed write metrics to PostgreSQL (1 row updated)`, 500))
+          .then(() => printLine(`<span class="json-string"><-- STATUS 200 OK (Streak updated in 3ms - cached write)</span>`, 200));
+      } else if (projectId === 'kharcha') {
+        printLine(`<span class="json-key">EVENT [SMS_RECEIVED]</span>`, 100)
+          .then(() => printLine(`  [BroadcastReceiver] Intercepted broadcast matching android.provider.Telephony.SMS_RECEIVED`, 300))
+          .then(() => printLine(`  [RegexParser] Reading: "Rs 150.00 debited from A/c XX8941 at StarMart via UPI..."`, 400))
+          .then(() => printLine(`  [Parser] Extracted transaction -> Type: DEBIT, Amount: 150.00, Merchant: StarMart`, 400))
+          .then(() => printLine(`  [Database] Room DB opening local transaction...`, 300))
+          .then(() => printLine(`  [Database] Insert transaction successful in Room SQLite database.`, 400))
+          .then(() => printLine(`<span class="json-string">SUCCESS (Parsed offline. 0 packets transmitted to external servers)</span>`, 200));
+      } else if (projectId === 'gyan') {
+        printLine(`<span class="json-key">--> GET /api/v1/learning/path?q="Distributed Consensus"</span>`, 100)
+          .then(() => printLine(`  [VectorService] Computing prompt queries cosine similarities...`, 300))
+          .then(() => printLine(`  [LocalStore] Querying SQLite text chunks: match found for 'Raft Consensus' (Score: 0.92)`, 400))
+          .then(() => printLine(`  [Orchestration] Appending match chunk to prompt template context (Preventing LLM hallucination)`, 300))
+          .then(() => printLine(`  [APIClient] Invoking OpenAI completion API (Prompt tokens: 320, Output tokens: 180)`, 500))
+          .then(() => printLine(`<span class="json-string"><-- STATUS 200 OK (Knowledge graph path computed in 640ms)</span>`, 200));
+      } else if (projectId === 'overair') {
+        printLine(`<span class="json-key">--> POST /api/v1/ota/rollout</span>`, 100)
+          .then(() => printLine(`  [Campaign] Targeted rollout: VehicleModel='Model-Z', Region='EU-West', Year='2025'`, 300))
+          .then(() => printLine(`  [Security] Verifying digital signature of update binary (SHA-256 with RSA-PSS)...`, 400))
+          .then(() => printLine(`  [Security] Signature VALID. Secure download URL generated.`, 300))
+          .then(() => printLine(`  [Orchestration] Dispatching update stream to 240,000 active vehicle gateways`, 400))
+          .then(() => printLine(`  [Gateway-302] Connection speed drop. Signal strength: 12% (3G Roaming Base Station)`, 500))
+          .then(() => printLine(`  <span class="log-line warn">[Network] Gateway-302 dropped offline. Socket reset.</span>`, 400))
+          .then(() => printLine(`  [Orchestration] Retrying gateway connection. Active offset cached at 48 MB / 100 MB`, 500))
+          .then(() => printLine(`  [Network] Connection re-established (Gateway-302 handshake OK)`, 400))
+          .then(() => printLine(`  [Orchestration] Resuming transfer from offset 48 MB (Idempotency check passed - zero data rewritten)`, 500))
+          .then(() => printLine(`  [Gateway-302] Download completed. Verifying image hash...`, 300))
+          .then(() => printLine(`  [ECU] Flashing safe backup sector. Verifying signature on-board (TPM 2.0)...`, 400))
+          .then(() => printLine(`  [Orchestration] Commit command verified. Updating state: VERIFYING -> COMMITTED`, 300))
+          .then(() => printLine(`<span class="json-string"><-- STATUS 200 OK (Campaign Rollout Complete: 100% success rate)</span>`, 200));
+      }
+    }
+
+    // Scroll Fade-in Intersection Observer
+    const revealElements = document.querySelectorAll('.reveal');
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('active');
+          // If the stack section is revealed, animate skill bars
+          if (entry.target.id === 'stack') {
+            animateSkillBars();
+          }
+        }
+      });
+    }, {
+      threshold: 0.15
+    });
+
+    revealElements.forEach(el => {
+      revealObserver.observe(el);
+    });
+
+    // Animate skill progress bars
+    function animateSkillBars() {
+      const bars = document.querySelectorAll('.skill-bar-fill');
+      bars.forEach(bar => {
+        const targetWidth = bar.getAttribute('data-width');
+        bar.style.width = targetWidth;
+      });
+    }
+
+    // Active Nav Highlight on scroll
+    const sections = document.querySelectorAll('section');
+    const navLinks = document.querySelectorAll('.nav-link');
+
+    window.addEventListener('scroll', () => {
+      let current = '';
+      sections.forEach(section => {
+        const sectionTop = section.offsetTop;
+        const sectionHeight = section.clientHeight;
+        const scrollY = window.scrollY || window.pageYOffset || document.documentElement.scrollTop;
+        if (scrollY >= (sectionTop - 250)) {
+          current = section.getAttribute('id');
+        }
+      });
+
+      navLinks.forEach(link => {
+        link.classList.remove('active');
+        if (link.getAttribute('href') === '#' + current) {
+          link.classList.add('active');
+        }
+      });
+    });
+
+    // Copy Email to Clipboard helper + Lightbulb tooltip reveal
+    function copyEmailToClipboard() {
+      navigator.clipboard.writeText('ankitrai.pro@gmail.com').then(() => {
+        const btn = document.getElementById('copy-email-btn');
+        btn.textContent = 'Copied!';
+        btn.style.borderColor = 'var(--accent-teal)';
+        btn.style.color = 'var(--accent-teal)';
+        
+        // Reveal lightbulb tip box
+        const tipBox = document.getElementById('lightbulb-tip-box');
+        tipBox.style.maxHeight = '150px';
+        tipBox.style.opacity = '1';
+        tipBox.style.borderWidth = '1px';
+        tipBox.style.marginBottom = '1.5rem';
+
+        setTimeout(() => {
+          btn.textContent = 'Copy Address';
+          btn.style.borderColor = 'var(--border-color)';
+          btn.style.color = 'var(--text-main)';
+        }, 2000);
+      });
+    }
+
+    // Interactive Reveal Easter Egg Decryption logic
+    let secretRevealed = false;
+    function revealSecretInsight() {
+      const btn = document.getElementById('reveal-btn');
+      const box = document.getElementById('secret-insight-box');
+      
+      if (!secretRevealed) {
+        secretRevealed = true;
+        btn.innerHTML = `<span class="status-pulse" style="display:inline-block; background-color: var(--accent-blue);"></span> Decrypting insight...`;
+        
+        setTimeout(() => {
+          btn.innerHTML = `<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg> [ Insight Decrypted ]`;
+          btn.style.borderColor = 'var(--accent-teal)';
+          btn.style.color = 'var(--accent-teal)';
+          
+          box.style.maxHeight = '540px';
+          box.style.opacity = '1';
+          box.style.borderWidth = '1px';
+        }, 1200);
+      } else {
+        secretRevealed = false;
+        btn.innerHTML = `<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg> [ REVEAL SYSTEMS EASTER EGG ]`;
+        btn.style.borderColor = 'var(--border-color)';
+        btn.style.color = 'var(--accent-blue)';
+        
+        box.style.maxHeight = '0';
+        box.style.opacity = '0';
+        box.style.borderWidth = '0';
+      }
+    }
+
+    // Theme switching logic
+    function setTheme(themeName) {
+      // Remove all theme classes
+      document.body.classList.remove('theme-matrix', 'theme-cyberpunk', 'theme-nord', 'theme-light');
+      
+      if (themeName !== 'default') {
+        document.body.classList.add(`theme-${themeName}`);
+      }
+      
+      // Sync selector dropdown
+      const themeSelector = document.getElementById('theme-selector');
+      if (themeSelector && themeSelector.value !== themeName) {
+        themeSelector.value = themeName;
+      }
+      
+      // Save choice
+      localStorage.setItem('portfolio-theme', themeName);
+    }
+
+    // Initialize theme on load
+    window.addEventListener('DOMContentLoaded', () => {
+      const savedTheme = localStorage.getItem('portfolio-theme');
+      if (savedTheme) {
+        setTheme(savedTheme);
+      }
+    });
+
+    // Collapsible Commands Cheat Sheet
+    let cheatSheetOpen = false;
+    function toggleTerminalCheatSheet() {
+      const sheet = document.getElementById('terminal-cheat-sheet');
+      const btn = document.getElementById('cheat-sheet-btn');
+      
+      if (!cheatSheetOpen) {
+        cheatSheetOpen = true;
+        sheet.style.maxHeight = '300px';
+        sheet.style.opacity = '1';
+        sheet.style.borderTop = '1px dashed var(--border-color)';
+        sheet.style.paddingTop = '0.5rem';
+        btn.innerHTML = `<svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg> [ Hide Commands Cheat Sheet ]`;
+      } else {
+        cheatSheetOpen = false;
+        sheet.style.maxHeight = '0';
+        sheet.style.opacity = '0';
+        sheet.style.borderTop = '0 solid var(--border-color)';
+        sheet.style.paddingTop = '0';
+        btn.innerHTML = `<svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path><line x1="12" y1="17" x2="12.01" y2="17"></line></svg> [ Toggle Commands Cheat Sheet ]`;
+      }
+    }
+
+    // Auto-type command insert helper
+    function insertTerminalCommand(cmd) {
+      const input = document.getElementById('terminal-cli');
+      if (input) {
+        input.value = cmd;
+        input.focus();
+      }
+    }
+  </script>
+</body>
+</html>
